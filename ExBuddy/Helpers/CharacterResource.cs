@@ -6,7 +6,6 @@ using ff14bot.Objects;
 
 namespace ExBuddy.Helpers
 {
-#if !RB_CN
     public static class CharacterResource
     {
         public static ushort GetGpPerTick()
@@ -48,5 +47,4 @@ namespace ExBuddy.Helpers
             get { return GameObjectManager.LocalPlayer; }
         }
     }
-#endif
 }

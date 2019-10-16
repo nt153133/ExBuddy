@@ -69,7 +69,6 @@
     <Compile Include="Helpers\EorzeaTimeHelper.cs" />
     <Compile Include="Helpers\Lazier.cs" />
     <Compile Include="Helpers\CharacterResource.cs" />
-    <Compile Include="Helpers\CharacterResource_RBCN.cs" />
     <Compile Include="Helpers\ConditionTimer.cs" />
     <Compile Include="Helpers\NodeHelper.cs" />
     <Compile Include="Inventory\InventoryItem.cs" />

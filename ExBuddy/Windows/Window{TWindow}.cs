@@ -80,9 +80,7 @@
 				if (!IsValid)
 				{
 					Logger.Instance.Verbose(Localization.Localization.Window_Closed, Name);
-#if !RB_CN
                     await CloseSelectString();
-#endif
                     return result;
 				}
 
@@ -92,9 +90,7 @@
 				if (!IsValid)
 				{
 					Logger.Instance.Verbose(Localization.Localization.Window_Closed, Name);
-#if !RB_CN
                     await CloseSelectString();
-#endif
                     return result;
 				}
 

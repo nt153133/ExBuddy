@@ -234,19 +234,6 @@ namespace ExBuddy.OrderBotTags.Behaviors
 
         private void LogScripsRemainingForPurchaseInfos()
         {
-#if RB_CN
-            var result = ShopPurchases.Select(sp => Data.ShopItemMap[sp.ShopItem].ShopType).Distinct().ToArray();
-
-            foreach (var shopType in result)
-            {
-                Logger.Info(
-                    Localization.Localization.ExTurnInCollectable_ScripsRemaining,
-                    shopType,
-                    Memory.Scrips.GetRemainingScripsByShopType(shopType)
-                    );
-            }
-#else
-
             var resultJob = ShopPurchases.Select(sp => Data.ShopItemMap[sp.ShopItem].ShopJob).Distinct().ToArray();
 
             foreach (var shopJob in resultJob)
@@ -262,7 +249,6 @@ namespace ExBuddy.OrderBotTags.Behaviors
                     );
                 }
             }
-#endif
         }
 
         private async Task<bool> MoveToNpc()
@@ -321,11 +307,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
 
             var itemsToPurchase = ShopPurchases.Where(ShouldPurchaseItem).ToArray();
             var npc = GameObjectManager.GetObjectByNPCId(shopExchangeCurrencyNpc.NpcId);
-#if RB_CN
-			var shopType = ShopType.RedGatherer50;
-#else
             var shopType = ShopType.Yellow50;
-#endif
             var shopExchangeCurrency = new ShopExchangeCurrency();
             foreach (var purchaseItem in itemsToPurchase)
             {
@@ -371,29 +353,6 @@ namespace ExBuddy.OrderBotTags.Behaviors
                     return true;
                 }
 
-#if RB_CN
-                if ((Location == Locations.MorDhona)
-                    && (purchaseItemInfo.ShopType == ShopType.YellowCrafterItems || purchaseItemInfo.ShopType == ShopType.YellowGathererItems))
-                {
-                    Logger.Warn(Localization.Localization.ExTurnInCollectable_FailedPurchaseGorRhalgrsReach, purchaseItemData.EnglishName);
-                    continue;
-                }
-
-                ticks = 0;
-                while (SelectIconString.IsOpen && ticks++ < 5 && Behaviors.ShouldContinue)
-                {
-                    if ((Location == Locations.MorDhona) && (purchaseItemInfo.ShopType == ShopType.RedGatherer50 || purchaseItemInfo.ShopType == ShopType.RedGatherer58))
-                    {
-                        SelectIconString.ClickSlot((uint)purchaseItemInfo.ShopType - 5);
-                    }
-                    else
-                    {
-                        SelectIconString.ClickSlot((uint)purchaseItemInfo.ShopType);
-                    }
-
-                    await shopExchangeCurrency.Refresh(5000);
-                }
-#else
                 if (purchaseItemInfo.Index == (int) ShopItem.OnHighOrchestrionRoll && Location != Locations.RhalgrsReach ||
                     purchaseItemInfo.Index >= (int) ShopItem.MoonbeamSilk && purchaseItemInfo.Index <= (int) ShopItem.RaziqcoatHq && Location != Locations.RhalgrsReach ||
                     purchaseItemInfo.Index == (int) ShopItem.GardenGravel && Location != Locations.RhalgrsReach ||
@@ -413,7 +372,6 @@ namespace ExBuddy.OrderBotTags.Behaviors
 
                     await shopExchangeCurrency.Refresh(5000);
                 }
-#endif
 
                 if (ticks > 5 || !shopExchangeCurrency.IsValid)
                 {
@@ -429,12 +387,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
 
                 await Coroutine.Sleep(600);
                 int scripsLeft;
-                while (purchaseItemData.ItemCount() < purchaseItem.MaxCount && (scripsLeft =
-#if RB_CN
-                    Memory.Scrips.GetRemainingScripsByShopType(purchaseItemInfo.ShopType)
-#else
-                               Memory.Scrips.GetRemainingScripsByShopType(purchaseItemInfo.ShopJob, purchaseItemInfo.ShopType)
-#endif
+                while (purchaseItemData.ItemCount() < purchaseItem.MaxCount && (scripsLeft = Memory.Scrips.GetRemainingScripsByShopType(purchaseItemInfo.ShopJob, purchaseItemInfo.ShopType)
                        ) >= purchaseItemInfo.Cost &&
                        Behaviors.ShouldContinue)
                 {
@@ -442,15 +395,11 @@ namespace ExBuddy.OrderBotTags.Behaviors
                     var qtyBuyable = scripsLeft / purchaseItemInfo.Cost;
                     var qtyToBuy = Math.Min(99, Math.Min(qtyLeftToBuy, qtyBuyable));
 
-                    var indexPurchaseItem =
-#if RB_CN
-                        purchaseItemInfo.Index;
-#else
-                        (Location != Locations.Idyllshire && Location != Locations.RhalgrsReach && purchaseItemInfo.ShopJob == ShopJob.Crafter && purchaseItemInfo.ShopType == ShopType.Yellow58 &&
+                    var indexPurchaseItem = (Location != Locations.Idyllshire && Location != Locations.RhalgrsReach && purchaseItemInfo.ShopJob == ShopJob.Crafter && purchaseItemInfo.ShopType == ShopType.Yellow58 &&
                          purchaseItemInfo.Index >= (int) ShopItem.MoonbeamSilk - 200)
                             ? purchaseItemInfo.Index - 12
                             : purchaseItemInfo.Index;
-#endif
+
                     if (!await shopExchangeCurrency.PurchaseItem(indexPurchaseItem, (uint) qtyToBuy, 20))
                     {
                         Logger.Error(Localization.Localization.ExTurnInCollectable_PurchaseTimeout, purchaseItemData.EnglishName);
@@ -463,13 +412,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
                     await
                         Coroutine.Wait(
                             5000,
-                            () => (scripsLeft =
-#if RB_CN
-                    Memory.Scrips.GetRemainingScripsByShopType(purchaseItemInfo.ShopType)
-#else
-                                          Memory.Scrips.GetRemainingScripsByShopType(purchaseItemInfo.ShopJob, purchaseItemInfo.ShopType)
-#endif
-                                  ) != left);
+                            () => (scripsLeft = Memory.Scrips.GetRemainingScripsByShopType(purchaseItemInfo.ShopJob, purchaseItemInfo.ShopType)) != left);
 
                     Logger.Info(
                         Localization.Localization.ExTurnInCollectable_Purchased,
@@ -806,70 +749,8 @@ namespace ExBuddy.OrderBotTags.Behaviors
             {
                 return false;
             }
-
-#if RB_CN
+            
 			// check cost
-			switch (info.ShopType)
-			{
-				case ShopType.RedCrafter50:
-					if (Memory.Scrips.RedCrafter < info.Cost)
-					{
-						return false;
-					}
-					break;
-
-				case ShopType.RedCrafter58:
-					if (Memory.Scrips.RedCrafter < info.Cost)
-					{
-						return false;
-					}
-					break;
-
-				case ShopType.RedCrafter61:
-					if (Memory.Scrips.RedCrafter < info.Cost)
-					{
-						return false;
-					}
-					break;
-                    
-                case ShopType.YellowCrafterItems:
-					if (Memory.Scrips.YellowCrafter < info.Cost)
-					{
-						return false;
-					}
-					break;
-
-                case ShopType.RedGatherer50:
-					if (Memory.Scrips.RedGatherer < info.Cost)
-					{
-						return false;
-					}
-					break;
-
-                case ShopType.RedGatherer58:
-					if (Memory.Scrips.RedGatherer < info.Cost)
-					{
-						return false;
-					}
-					break;
-
-				case ShopType.RedGatherer61:
-					if (Memory.Scrips.RedGatherer < info.Cost)
-					{
-						return false;
-					}
-					break;
-                    
-                case ShopType.YellowGathererItems:
-					if (Memory.Scrips.YellowGatherer < info.Cost)
-					{
-						return false;
-					}
-					break;
-            }
-#else
-
-            // check cost
             switch (info.ShopJob)
             {
                 case ShopJob.Crafter:
@@ -966,8 +847,6 @@ namespace ExBuddy.OrderBotTags.Behaviors
                 }
                     break;
             }
-#endif
-
             return true;
         }
     }
