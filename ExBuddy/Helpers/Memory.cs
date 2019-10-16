@@ -40,32 +40,6 @@
 
             public static int CenturioSeals => (int) SpecialCurrencyManager.GetCurrencyCount(SpecialCurrency.CenturioSeals);
 
-#if RB_CN
-            public static int GetRemainingScripsByShopType(ShopType shopType)
-            {
-                switch (shopType)
-                {
-                    case ShopType.RedCrafter50:
-                        return Scrips.RedCrafter;
-                    case ShopType.RedCrafter58:
-                        return Scrips.RedCrafter;
-                    case ShopType.RedCrafter61:
-                        return Scrips.RedCrafter;
-                    case ShopType.YellowCrafterItems:
-                        return Scrips.YellowCrafter;
-                    case ShopType.RedGatherer50:
-                        return Scrips.RedGatherer;
-                    case ShopType.RedGatherer58:
-                        return Scrips.RedGatherer;
-                    case ShopType.RedGatherer61:
-                        return Scrips.RedGatherer;
-                    case ShopType.YellowGathererItems:
-                        return Scrips.YellowGatherer;
-                }
-
-                return 0;
-            }
-#else
             public static int WhiteCrafter => ConditionParser.ItemCount(25199);
 
             public static int WhiteGatherer => ConditionParser.ItemCount(25200);
@@ -112,7 +86,6 @@
 
                 return 0;
             }
-#endif
         }
     }
 }
