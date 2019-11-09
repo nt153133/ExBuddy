@@ -41,7 +41,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
         [XmlAttribute("CleanBefore")]
         public bool CleanBefore { get; set; }
 
-        public new void Log(string text, params object[] args) { Logger.Mew("[EtxChocobot] " + string.Format(text, args)); }
+        public new void Log(string text, params object[] args) { Logger.Info(text, args); }
 
         protected override async Task<bool> Main()
         {

@@ -28,7 +28,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
         [XmlAttribute("DesynthTimeout")]
         public int DesynthTimeout { get; set; }
 
-        public new void Log(string text, params object[] args) { Logger.Mew("[EtxDesynth] " + string.Format(text, args)); }
+        public new void Log(string text, params object[] args) { Logger.Info(text, args); }
 
         protected override async Task<bool> Main()
         {

@@ -22,7 +22,7 @@
 	        get { return Colors.PaleVioletRed; }
 	    }
 
-	    public virtual Color Mew
+	    public virtual Color Entrax
 	    {
 	        get { return Colors.DeepPink; }
 	    }

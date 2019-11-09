@@ -20,7 +20,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
         [XmlAttribute("AlwaysWater")]
         public bool AlwaysWater { get; set; }
 
-        public new void Log(string text, params object[] args) { Logger.Mew("[EtxGardenner] " + string.Format(text, args)); }
+        public new void Log(string text, params object[] args) { Logger.Info(text, args); }
 
         protected override async Task<bool> Main()
         {

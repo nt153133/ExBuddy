@@ -1,8 +1,9 @@
-﻿using System;
+﻿using ff14bot;
 using ff14bot.Enums;
 using ff14bot.Managers;
 using ff14bot.NeoProfiles;
 using ff14bot.Objects;
+using System;
 
 namespace ExBuddy.Helpers
 {
@@ -10,11 +11,15 @@ namespace ExBuddy.Helpers
     {
         public static ushort GetGpPerTick()
         {
-            return (CharacterResource.Me.CurrentJob == ClassJobType.Miner && ConditionParser.IsQuestCompleted(68094))
+            ushort gpPerTick = 5;
+
+            if ((CharacterResource.Me.CurrentJob == ClassJobType.Miner && ConditionParser.IsQuestCompleted(68094))
                 || (CharacterResource.Me.CurrentJob == ClassJobType.Botanist && ConditionParser.IsQuestCompleted(68160))
-                || (CharacterResource.Me.CurrentJob == ClassJobType.Fisher && ConditionParser.IsQuestCompleted(68435))
-                ? (ushort) 6
-                : (ushort) 5;
+                || (CharacterResource.Me.CurrentJob == ClassJobType.Fisher && ConditionParser.IsQuestCompleted(68435))) gpPerTick++;
+
+            if (Core.Player.ClassLevel >= 80) gpPerTick++;
+
+            return gpPerTick;
         }
 
         public static ushort GetEffectiveGp(int ticksTillGather)
@@ -26,7 +31,7 @@ namespace ExBuddy.Helpers
         {
             return ticksTillGather <= 0
                 ? CharacterResource.Me.CurrentGP
-                : (ushort) Math.Min(CharacterResource.Me.CurrentGP + (ticksTillGather * gpPerTick), CharacterResource.Me.MaxGP);
+                : (ushort)Math.Min(CharacterResource.Me.CurrentGP + (ticksTillGather * gpPerTick), CharacterResource.Me.MaxGP);
         }
 
         public static TimeSpan EstimateExpectedRegenerationTime(ushort gpNeeded)
@@ -42,9 +47,6 @@ namespace ExBuddy.Helpers
             return TimeSpan.FromSeconds(gpNeededSeconds);
         }
 
-        private static LocalPlayer Me
-        {
-            get { return GameObjectManager.LocalPlayer; }
-        }
+        private static LocalPlayer Me => GameObjectManager.LocalPlayer;
     }
 }

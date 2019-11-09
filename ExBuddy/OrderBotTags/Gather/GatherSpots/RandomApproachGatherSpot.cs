@@ -38,13 +38,20 @@
 				result &= await approachLocation.MoveToOnGround();
 			}
 
+#if RB_CN
 			if (UnstealthAfter && Core.Player.HasAura((int)AbilityAura.Stealth))
 			{
 				result &= await tag.CastAura(Ability.Stealth);
 			}
+#else
+            if (UnstealthAfter && Core.Player.HasAura((int)AbilityAura.Sneak))
+            {
+                result &= await tag.CastAura(Ability.Sneak);
+            }
+#endif
 
-			//change the approach location for the next time we go to this node.
-			approachLocation = HotSpots.Shuffle().First();
+            //change the approach location for the next time we go to this node.
+            approachLocation = HotSpots.Shuffle().First();
 
 			return result;
 		}
@@ -74,10 +81,14 @@
 
 		    if (Stealth)
 		    {
-		        await tag.CastAura(Ability.Stealth, AbilityAura.Stealth);
-		    }
+#if RB_CN
+				await tag.CastAura(Ability.Stealth, AbilityAura.Stealth);
+#else
+                await tag.CastAura(Ability.Sneak, AbilityAura.Sneak);
+#endif
+            }
 
-		    result = await NodeLocation.MoveToOnGroundNoMount(tag.Distance, tag.Node.EnglishName, tag.MovementStopCallback);
+            result = await NodeLocation.MoveToOnGroundNoMount(tag.Distance, tag.Node.EnglishName, tag.MovementStopCallback);
 
             return result;
         }

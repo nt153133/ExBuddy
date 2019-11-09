@@ -65,7 +65,7 @@
 
 	    protected virtual Color Mew
 	    {
-	        get { return Logger.Colors.Mew; }
+	        get { return Logger.Colors.Entrax; }
 	    }
 
         #region ILogColors Members
@@ -83,11 +83,6 @@
 	    Color ILogColors.Warn
 	    {
 	        get { return Warn; }
-	    }
-
-	    Color ILogColors.Mew
-        {
-	        get { return Mew; }
 	    }
 
         #endregion ILogColors Members

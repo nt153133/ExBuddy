@@ -19,12 +19,19 @@ namespace ExBuddy.OrderBotTags.Gather.GatherSpots
 		{
 			tag.StatusText = "Moving from " + this;
 
-			if (UnstealthAfter && Core.Player.HasAura((int)AbilityAura.Stealth))
+#if RB_CN
+            if (UnstealthAfter && Core.Player.HasAura((int)AbilityAura.Stealth))
 			{
 				return await tag.CastAura(Ability.Stealth);
 			}
+#else
+            if (UnstealthAfter && Core.Player.HasAura((int)AbilityAura.Sneak))
+            {
+                return await tag.CastAura(Ability.Sneak);
+            }
+#endif
 
-			return true;
+            return true;
 		}
 
 		public override async Task<bool> MoveToSpot(ExGatherTag tag)
@@ -48,10 +55,14 @@ namespace ExBuddy.OrderBotTags.Gather.GatherSpots
 
 			    Navigator.Stop();
                 await Coroutine.Yield();
+#if RB_CN
 				await tag.CastAura(Ability.Stealth, AbilityAura.Stealth);
-			}
+#else
+                await tag.CastAura(Ability.Sneak, AbilityAura.Sneak);
+#endif
+            }
 
-			await Coroutine.Yield();
+            await Coroutine.Yield();
 
 			return result;
         }

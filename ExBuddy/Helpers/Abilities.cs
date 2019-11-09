@@ -11,103 +11,130 @@
 				{
 					ClassJobType.Botanist,
 					new Dictionary<Ability, uint>
-					{
+                    {
+                        {Ability.IncreaseGatherChance5, 218},
+                        {Ability.IncreaseGatherChance15, 220},
+#if RB_CN
 						{Ability.Stealth, 212},
-						{Ability.Preparation, 213},
-						{Ability.Toil, 214},
-						{Ability.AdditionalAttempt, 215},
-						{Ability.IncreaseGatherChanceQuality100, 216},
-						{Ability.IncreaseGatherChance5, 218},
-						{Ability.IncreaseGatherChance15, 220},
-						{Ability.IncreaseGatherYield, 222},
-						{Ability.IncreaseGatherYield2, 224},
-						{Ability.IncreaseGatherQuality10, 225},
-						{Ability.IncreaseGatherQuality30, 226},
-						{Ability.Truth, 221},
-						{Ability.IncreaseGatherQuality30100, 271},
+#else
+                        {Ability.Sneak, 304},
+#endif
 						{Ability.IncreaseGatherChance50, 294},
-						{Ability.ImpulsiveAppraisalII, 302},
-						{Ability.IncreaseGatherChanceOnce15, 4086},
-						{Ability.IncreaseGatherYieldOnce, 4087},
-						{Ability.CollectorsGlove, 4088},
-						{Ability.MethodicalAppraisal, 4089},
-						{Ability.InstinctualAppraisal, 4090},
-						{Ability.ImpulsiveAppraisal, 4091},
-						{Ability.DiscerningEye, 4092},
-						{Ability.UtmostCaution, 4093},
-						{Ability.DeepBreath, 4094},
-						{Ability.Luck, 4095},
-						{Ability.IncreaseGatherQualityOnce10, 4096},
-						{Ability.IncreaseGatherQualityOnce20, 4097},
-						{Ability.SingleMind, 4098}
+                        {Ability.Preparation, 213},
+                        {Ability.IncreaseGatherQuality10, 225},
+                        {Ability.IncreaseElementalGatherYield, 282},
+                        {Ability.IncreaseGatherChanceOnce15, 4086},
+                        {Ability.IncreaseGatherYieldOnce, 4087},
+                        {Ability.AdditionalAttempt, 215},
+                        {Ability.IncreaseGatherChanceQuality100, 216},
+                        {Ability.IncreaseGatherYield, 222},
+                        {Ability.IncreaseGatherQuality30, 226},
+                        {Ability.IncreaseGatherYield2, 224},
+                        {Ability.Truth, 221},
+                        {Ability.CollectorsGlove, 4088},
+                        {Ability.MethodicalAppraisal, 4089},
+                        {Ability.DiscerningEye, 4092},
+                        {Ability.InstinctualAppraisal, 4090},
+                        {Ability.UtmostCaution, 4093},
+                        {Ability.ImpulsiveAppraisal, 4091},
+                        {Ability.Luck, 4095},
+                        {Ability.SingleMind, 4098},
+                        {Ability.IncreaseGatherQualityOnce10, 4096},
+                        {Ability.IncreaseGatherQualityOnce20, 4097},
+                        {Ability.ImpulsiveAppraisalII, 302},
+                        {Ability.IncreaseGatherQuality30100, 271},                        
+                        {Ability.IncreaseGatherQualityRandomOnce, 275},
+                        {Ability.IncreaseGatherYieldOnce2, 273},
+                        {Ability.Stickler, 4594},
+                        {Ability.TheGivingLand, 4590},
+                        {Ability.PickClean, 4588},
+                        {Ability.Mind, 4606}
 					}
 				},
                 {
                     ClassJobType.Miner,
                     new Dictionary<Ability, uint>
                     {
-                        {Ability.Stealth, 229},
-                        {Ability.Preparation, 230},
-                        {Ability.Toil, 231},
-                        {Ability.AdditionalAttempt, 232},
-                        {Ability.IncreaseGatherChanceQuality100, 233},
                         {Ability.IncreaseGatherChance5, 235},
                         {Ability.IncreaseGatherChance15, 237},
-                        {Ability.IncreaseGatherYield, 239},
-                        {Ability.IncreaseGatherYield2, 241},
-                        {Ability.IncreaseGatherQuality10, 242},
-                        {Ability.IncreaseGatherQuality30, 243},
-                        {Ability.Truth, 238},
-                        {Ability.IncreaseGatherQuality30100, 270},
+#if RB_CN
+                        {Ability.Stealth, 229},
+#else
+                        {Ability.Sneak, 303},
+#endif
                         {Ability.IncreaseGatherChance50, 295},
-                        {Ability.ImpulsiveAppraisalII, 301},
+                        {Ability.Preparation, 230},
+                        {Ability.IncreaseGatherQuality10, 242},
+                        {Ability.IncreaseElementalGatherYield, 280},
                         {Ability.IncreaseGatherChanceOnce15, 4072},
                         {Ability.IncreaseGatherYieldOnce, 4073},
+                        {Ability.AdditionalAttempt, 232},
+                        {Ability.IncreaseGatherChanceQuality100, 233},
+                        {Ability.IncreaseGatherYield, 239},
+                        {Ability.IncreaseGatherQuality30, 243},
+                        {Ability.IncreaseGatherYield2, 241},
+                        {Ability.Truth, 238},
                         {Ability.CollectorsGlove, 4074},
                         {Ability.MethodicalAppraisal, 4075},
-                        {Ability.InstinctualAppraisal, 4076},
-                        {Ability.ImpulsiveAppraisal, 4077},
                         {Ability.DiscerningEye, 4078},
+                        {Ability.InstinctualAppraisal, 4076},
                         {Ability.UtmostCaution, 4079},
-                        {Ability.DeepBreath, 4080},
+                        {Ability.ImpulsiveAppraisal, 4077},
                         {Ability.Luck, 4081},
+                        {Ability.SingleMind, 4084},
                         {Ability.IncreaseGatherQualityOnce10, 4082},
                         {Ability.IncreaseGatherQualityOnce20, 4083},
-                        {Ability.SingleMind, 4084}
+                        {Ability.ImpulsiveAppraisalII, 301},
+                        {Ability.IncreaseGatherQuality30100, 270},
+                        {Ability.IncreaseGatherQualityRandomOnce, 274},
+                        {Ability.IncreaseGatherYieldOnce2, 272},
+                        {Ability.Stickler, 4593},
+                        {Ability.TheGivingLand, 4589},
+                        {Ability.PickClean, 4587},
+                        {Ability.Mind, 4605},
                     }
                 },
                 {
                     ClassJobType.Fisher,
                     new Dictionary<Ability, uint>
                     {
-                        {Ability.CastLight, 2135},
-                        {Ability.Mooch2, 268},
-                        {Ability.DoubleHook, 269},
                         {Ability.Bait, 288},
                         {Ability.Cast, 289},
                         {Ability.Hook, 296},
-                        {Ability.Mooch, 297},
-                        {Ability.Stealth, 298},
                         {Ability.Quit, 299},
+                        {Ability.CastLight, 2135},
+#if RB_CN
+                        {Ability.Stealth, 298},
+#else
+                        {Ability.Sneak, 305},
+#endif
                         {Ability.Release, 300},
+                        {Ability.Mooch, 297},
                         {Ability.Snagging, 4100},
                         {Ability.CollectorsGlove, 4101},
                         {Ability.Patience, 4102},
                         {Ability.PowerfulHookset, 4103},
                         {Ability.Chum, 4104},
+                        {Ability.PrecisionHookset, 4179},
                         {Ability.FishEyes, 4105},
                         {Ability.Patience2, 4106},
-                        {Ability.PrecisionHookset, 4179},
+                        {Ability.SharkEye, 7904},
                         {Ability.Gig, 7632},
                         {Ability.GigHead, 7634},
-                        {Ability.SharkEye, 7904},
-                        {Ability.SharkEye2, 7905},
+                        {Ability.Mooch2, 268},
                         {Ability.VeteranTrade, 7906},
-                        {Ability.BountifulCatch, 7907},
                         {Ability.CalmWaters, 7908},
-                        {Ability.NaturesBounty, 7909},
-                        {Ability.Salvage, 7910},
+                        {Ability.SharkEye2, 7905},
                         {Ability.Truth, 7911},
+                        {Ability.DoubleHook, 269},
+                        {Ability.Salvage, 7910},
+                        {Ability.BountifulCatch, 7907},
+                        {Ability.NaturesBounty, 7909},
+                        {Ability.SurfaceSlap, 4595},
+                        {Ability.IdenticalGig, 4591},
+                        {Ability.IdenticalCast, 4596},
+
+
                     }
                 }
             };
@@ -117,7 +144,11 @@
 	{
 		None = -1,
 
+#if RB_CN
 		Stealth = 47,
+#else
+        Sneak = 47,
+#endif
 
 		TruthOfForests = 221,
 
@@ -131,114 +162,135 @@
     }
 
 	internal enum Ability : byte
-	{
-		None,
+    {
+        None,
 
-		Stealth, // = 229,212
+        IncreaseGatherChance5, // 218, 235
 
-		Preparation, // = 230,213
+        IncreaseGatherChance15, // 220, 235
 
-		Toil, // = 231,214
+#if RB_CN
+		Stealth, // = 212, 229, 298
+#else
+        Sneak, // = 304, 303, 305
+#endif
 
-		AdditionalAttempt, // 232,215
+        IncreaseGatherChance50, // 294, 295
 
-		IncreaseGatherChanceQuality100, // 233,216
+        Preparation, // 213, 230
 
-		IncreaseGatherChance5, // = 235,218
+        IncreaseGatherQuality10, // 225, 242
 
-		IncreaseGatherChance15, // = 237,220
+        IncreaseElementalGatherYield, // 282, 280
 
-		IncreaseGatherYield, // = 239,222
+        IncreaseGatherChanceOnce15, // 4086, 4072
 
-		IncreaseGatherYield2, // = 241,224
+        IncreaseGatherYieldOnce, // 40887, 8073
 
-		IncreaseGatherQuality10, // 242,225
+        AdditionalAttempt, // 215, 232
 
-		IncreaseGatherQuality30, // 243,226
+        IncreaseGatherChanceQuality100, // 216, 233
 
-		Truth, // = 238,221,7911
+        IncreaseGatherYield, // 222, 239
 
-        IncreaseGatherQuality30100, // = 270,271
+        IncreaseGatherQuality30, // 226, 243
 
-		IncreaseGatherChance50, // = 295,294
+        IncreaseGatherYield2, // 224, 241
 
-		ImpulsiveAppraisalII, // = 301,302
+        Truth, // 221, 238, 7911
 
-		IncreaseGatherChanceOnce15, // 4072, 4086
+        CollectorsGlove, // 4088, 4074, 4101
 
-		IncreaseGatherYieldOnce, // 4073, 4087
+        MethodicalAppraisal, // 4089, 4075
 
-		CollectorsGlove, // = 4074,4088
+        DiscerningEye, // 4092, 4078
 
-		MethodicalAppraisal, // = 4075,4089
+        InstinctualAppraisal, // 4090, 4076
 
-		InstinctualAppraisal, // = 4076,4090
+        UtmostCaution, // 4093, 4079
 
-		ImpulsiveAppraisal, // = 4077,4091
+        ImpulsiveAppraisal, // 4091, 4077
 
-		DiscerningEye, // = 4078,4092
+        Luck, // 4095, 4081
 
-		UtmostCaution, // = 4079,4093
+        SingleMind, // 4098, 4084
 
-		DeepBreath, // = 4080,4094
+        IncreaseGatherQualityOnce10, // 4096, 4082
 
-		Luck, // = 4081,4095
+        IncreaseGatherQualityOnce20, // 4097, 4083
 
-		IncreaseGatherQualityOnce10, // = 4082, 4096
+        ImpulsiveAppraisalII, // 302, 301
 
-		IncreaseGatherQualityOnce20, // = 4083, 4097
+        IncreaseGatherQuality30100, // 271, 270
 
-		SingleMind, // = 4084,4098
+        IncreaseGatherQualityRandomOnce, // 275, 274
+
+        IncreaseGatherYieldOnce2, // 273, 272
+
+        Stickler, // 4594, 4593
+
+        TheGivingLand, // 4590, 4589
+
+        PickClean, // 4588, 4587
+
+        Mind, // 4606, 4605        
 
         // Fisher
-        CastLight,
-    
-        Mooch2,
-    
-        DoubleHook,
-    
+
         Bait,
-    
+
         Cast,
-    
+
         Hook,
-    
-        Mooch,
-    
+
         Quit,
-    
+
+        CastLight,
+
         Release,
-    
+
+        Mooch,
+
         Snagging,
-    
+
         Patience,
-    
+
         PowerfulHookset,
-    
+
         Chum,
-    
-        FishEyes,
-    
-        Patience2,
-    
+
         PrecisionHookset,
-    
-        Gig,
-    
-        GigHead,
-    
+
+        FishEyes,
+
+        Patience2,
+
         SharkEye,
-    
-        SharkEye2,
-    
+
+        Gig,
+
+        GigHead,
+
+        Mooch2,
+
         VeteranTrade,
-    
-        BountifulCatch,
-    
+
         CalmWaters,
-    
+
+        SharkEye2,
+
+        DoubleHook,
+
+        Salvage,
+
+        BountifulCatch,
+
         NaturesBounty,
-    
-        Salvage
+
+        SurfaceSlap,
+
+        IdenticalGig,
+
+        IdenticalCast,
     }
 }

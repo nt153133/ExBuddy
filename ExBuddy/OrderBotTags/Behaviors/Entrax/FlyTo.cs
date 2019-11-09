@@ -51,7 +51,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
         private Vector3? FinalDestination { get; set; }
         private HotSpot RoughDestination { get; set; }
 
-        public new void Log(string text, params object[] args) { Logger.Mew("[EtxFlyTo] " + string.Format(text, args)); }
+        public new void Log(string text, params object[] args) { Logger.Info(text, args); }
 
         protected override void OnDone() { Navigator.PlayerMover.MoveStop(); }
 

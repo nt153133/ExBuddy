@@ -93,7 +93,11 @@
         [DefaultValue(1)]
         [XmlAttribute("VeteranTradeDepth")]
         public int VeteranTradeDepth { get; set; }
-        
+
+        [DefaultValue(1)]
+        [XmlAttribute("IdenticalGigDepth")]
+        public int IdenticalGigDepth { get; set; }
+
         [DefaultValue(false)]
         [XmlAttribute("BountifulCatch")]
         public bool BountifulCatch { get; set; }
@@ -672,6 +676,7 @@
 
             var hits = 0;
             var veteranTrade = false;
+            var identicalGig = false;
             while (await Coroutine.Wait(4500, () => ActionManager.CanCast(7632, Core.Player) || !Node.IsValid))
             {
                 if (BountifulCatch && Core.Player.CurrentGP >= 200 && hits >= 1 && hits <= BountifulCatchDepth && (!BountifulCatchAfterVeteranTrade || veteranTrade))
@@ -687,6 +692,12 @@
 
                 hits++;
                 Logger.Info(Localization.ExSpearFish_SpearFishing, SpearResult.FishName, SpearResult.IsHighQuality, SpearResult.Size, WorldManager.EorzaTime);
+                if (!veteranTrade && hits <= IdenticalGigDepth && !identicalGig && Items.Any(SpearResult.ShouldKeep) && Core.Player.CurrentGP >= 350 && await Coroutine.Wait(4000, () => ActionManager.CanCast(4591, Core.Player)))
+                {
+                    Logger.Info(Localization.ExSpearFish_UsingIdenticalGig, SpearResult.FishName);
+                    await Cast(Abilities.Map[Core.Player.CurrentJob][Ability.IdenticalGig]);
+                    veteranTrade = true;
+                }
                 if (hits > VeteranTradeDepth || veteranTrade || Items.Any(SpearResult.ShouldKeep) || Core.Player.CurrentGP < 200 || !await Coroutine.Wait(4000, () => ActionManager.CanCast(7906, Core.Player))) continue;
                 Logger.Info(Localization.ExSpearFish_UsingVeteranTrade, SpearResult.FishName);
                 await Cast(Abilities.Map[Core.Player.CurrentJob][Ability.VeteranTrade]);

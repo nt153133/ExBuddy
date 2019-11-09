@@ -25,7 +25,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
         [XmlAttribute("MaxWait")]
         public int MaxWait { get; set; }
 
-        public new void Log(string text, params object[] args) { Logger.Mew("[EtxEquip] " + string.Format(text, args)); }
+        public new void Log(string text, params object[] args) { Logger.Info(text, args); }
 
         protected override async Task<bool> Main()
         {

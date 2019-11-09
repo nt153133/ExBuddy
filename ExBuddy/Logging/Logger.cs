@@ -74,17 +74,6 @@
 			}
 	    }
 
-	    public void Mew(string message)
-	    {
-	        Logging.Write(logColors.Mew, Prefix + message);
-	    }
-
-	    [StringFormatMethod("format")]
-	    public void Mew(string format, params object[] args)
-	    {
-	        Logging.Write(logColors.Mew, Prefix + string.Format(CultureInfo.InvariantCulture, format, args));
-	    }
-
 	    public void Error(string message)
 	    {
 	        Logging.Write(logColors.Error, Prefix + message);

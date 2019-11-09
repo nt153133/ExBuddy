@@ -729,4 +729,7 @@
   <data name="ExSpearFish_UsingVeteranTrade" xml:space="preserve">
     <value>Using Veteran Trade on {0}.</value>
   </data>
+  <data name="ExSpearFish_UsingIdenticalGig" xml:space="preserve">
+    <value>Using Identical Gig on {0}.</value>
+  </data>
 </root>

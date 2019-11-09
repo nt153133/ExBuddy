@@ -16,7 +16,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
         [XmlAttribute("AetheryteId")]
         public uint AetheryteId { get; set; }
 
-        public new void Log(string text, params object[] args) { Logger.Mew("[EtxTeleportTo] " + string.Format(text, args)); }
+        public new void Log(string text, params object[] args) { Logger.Info(text, args); }
 
         protected override async Task<bool> Main()
         {

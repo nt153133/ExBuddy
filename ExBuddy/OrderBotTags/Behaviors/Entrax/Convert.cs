@@ -27,8 +27,8 @@ namespace ExBuddy.OrderBotTags.Behaviors
         [DefaultValue(true)]
         [XmlAttribute("NqOnly")]
         public bool NqOnly { get; set; }
-
-        public new void Log(string text, params object[] args) { Logger.Mew("[EtxConvert] " + string.Format(text, args)); }
+        
+        public new void Log(string text, params object[] args) { Logger.Info(text, args); }
 
         protected override async Task<bool> Main()
         {

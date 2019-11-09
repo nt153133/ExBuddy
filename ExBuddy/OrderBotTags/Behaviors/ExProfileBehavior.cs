@@ -71,7 +71,7 @@
 
 	    protected virtual Color Mew
 	    {
-	        get { return Logger.Colors.Mew; }
+	        get { return Logger.Colors.Entrax; }
 	    }
 
         public override string ToString()
@@ -111,11 +111,6 @@
 	    Color ILogColors.Warn
 	    {
 	        get { return Warn; }
-	    }
-
-	    Color ILogColors.Mew
-	    {
-	        get { return Mew; }
 	    }
 
         #endregion ILogColors Members

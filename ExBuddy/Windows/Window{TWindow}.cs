@@ -67,7 +67,7 @@
 
 		public virtual async Task<SendActionResult> CloseInstance(ushort interval = 250)
 		{
-			await Behaviors.Sleep(interval / 2);
+			await Behaviors.Sleep(interval);
 
 			Logger.Instance.Verbose(Localization.Localization.Window_Attempting, Name);
 

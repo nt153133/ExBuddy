@@ -1213,6 +1213,15 @@ namespace ExBuddy.Localization {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Using Identical Gig on {0}..
+        /// </summary>
+        internal static string ExSpearFish_UsingIdenticalGig {
+            get {
+                return ResourceManager.GetString("ExSpearFish_UsingIdenticalGig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Using Veteran Trade on {0}..
         /// </summary>
         internal static string ExSpearFish_UsingVeteranTrade {

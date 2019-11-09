@@ -38,10 +38,12 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
 			if (tag.Node.IsUnspoiled() && Core.Player.CurrentGP >= 550 && unknownItems.Length > 1)
 			{
-				await tag.Cast(Ability.Toil);
-			}
+#if RB_CN
+			await tag.Cast(Ability.Toil);
+#endif
+            }
 
-			return await base.Prepare(tag);
+            return await base.Prepare(tag);
 		}
 	}
 }

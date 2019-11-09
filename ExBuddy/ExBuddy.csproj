@@ -251,6 +251,7 @@
     <Compile Include="Windows\GatheringMasterpiece.cs" />
     <Compile Include="Windows\GuildLeve.cs" />
     <Compile Include="Windows\InputNumeric.cs" />
+    <Compile Include="Windows\RetainerList.cs" />
     <Compile Include="Windows\MasterPieceSupply.cs" />
     <Compile Include="Windows\PurifyDialog.cs" />
     <Compile Include="Windows\PurifyItemSelector.cs" />

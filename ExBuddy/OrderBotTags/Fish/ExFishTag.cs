@@ -963,8 +963,12 @@ namespace ExBuddy.OrderBotTags.Fish
 							r =>
 							{
 								CharacterSettings.Instance.UseMount = false;
-								DoAbility(Ability.Stealth);
-							}),
+#if RB_CN
+                                DoAbility(Ability.Stealth);
+#else
+                                DoAbility(Ability.Sneak);
+#endif
+                            }),
 						new Sleep(2, 3)));
 			}
 		}
