@@ -1,7 +1,9 @@
 namespace ExBuddy.OrderBotTags.Gather.Rotations
 {
+    using Buddy.Coroutines;
     using ExBuddy.Attributes;
     using ExBuddy.Enumerations;
+    using ExBuddy.Helpers;
     using ExBuddy.Interfaces;
     using ff14bot;
     using ff14bot.Managers;
@@ -43,6 +45,58 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
                 await IncreaseYieldAndQuality(tag);
                 return await base.ExecuteRotation(tag);
             }
+
+            return true;
+        }
+
+        public override async Task<bool> Gather(ExGatherTag tag)
+        {
+            tag.StatusText = "Gathering items";
+
+            while (tag.Node.CanGather && GatheringManager.SwingsRemaining > tag.SwingsRemaining && Behaviors.ShouldContinue)
+            {
+                await Wait();
+
+                if (Core.Player.CurrentGP >= 100 && GatheringManager.MaxSwings > 4)
+                {
+                    if (Core.Player.ClassLevel >= 68)
+                    {
+                        await tag.Cast(Ability.IncreaseGatherYieldOnce2);
+                        await Wait();
+                    }
+                    else if (Core.Player.ClassLevel >= 24)
+                    {
+                        await tag.Cast(Ability.IncreaseGatherYieldOnce);
+                        await Wait();
+                    }
+                }
+
+                if (GatheringManager.GatheringCombo == 4 && GatheringManager.SwingsRemaining > tag.SwingsRemaining)
+                {
+                    await tag.Cast(Ability.IncreaseGatherChanceQuality100);
+                    await Wait();
+                }
+
+                if (!await tag.ResolveGatherItem())
+                {
+                    return false;
+                }
+
+                var swingsRemaining = GatheringManager.SwingsRemaining - 1;
+
+                if (!tag.GatherItem.TryGatherItem())
+                {
+                    return false;
+                }
+
+                var ticks = 0;
+                while (swingsRemaining != GatheringManager.SwingsRemaining && ticks++ < 60 && Behaviors.ShouldContinue)
+                {
+                    await Coroutine.Yield();
+                }
+            }
+
+            tag.StatusText = "Gathering items complete";
 
             return true;
         }

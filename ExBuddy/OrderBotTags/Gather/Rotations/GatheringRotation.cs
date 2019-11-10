@@ -68,9 +68,9 @@
             return true;
         }
 
-        protected virtual async Task<bool> IncreaseYield(ExGatherTag tag, bool PickClean = true)
+        protected virtual async Task<bool> IncreaseYield(ExGatherTag tag)
         {
-            if (Core.Player.CurrentGP >= 250 && Core.Player.ClassLevel >= 77 && PickClean)
+            if (Core.Player.CurrentGP >= 250 && Core.Player.ClassLevel >= 77)
             {
                 return await tag.Cast(Ability.PickClean);
             }
@@ -113,14 +113,16 @@
             if (Core.Player.CurrentGP >= 500 && Core.Player.ClassLevel >= 40)
             {
                 await tag.Cast(Ability.IncreaseGatherYield2);
+                return await IncreaseQuality(tag);
             }
 
             if (Core.Player.CurrentGP >= 400 && Core.Player.ClassLevel >= 30 && (Core.Player.ClassLevel < 40 || Core.Player.MaxGP < 500))
             {
                 await tag.Cast(Ability.IncreaseGatherYield);
+                return await IncreaseQuality(tag);
             }
 
-            return await IncreaseQuality(tag);
+            return false;
         }
 
         #region IGatheringRotation Members
