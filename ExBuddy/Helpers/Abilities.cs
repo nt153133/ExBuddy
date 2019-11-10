@@ -16,6 +16,7 @@
                         {Ability.IncreaseGatherChance15, 220},
 #if RB_CN
 						{Ability.Stealth, 212},
+                        {Ability.Toil, 214},
 #else
                         {Ability.Sneak, 304},
 #endif
@@ -59,6 +60,7 @@
                         {Ability.IncreaseGatherChance15, 237},
 #if RB_CN
                         {Ability.Stealth, 229},
+                        {Ability.Toil, 231},
 #else
                         {Ability.Sneak, 303},
 #endif
@@ -171,6 +173,8 @@
 
 #if RB_CN
 		Stealth, // = 212, 229, 298
+
+		Toil, // = 231,214
 #else
         Sneak, // = 304, 303, 305
 #endif
