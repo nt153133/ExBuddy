@@ -114,6 +114,7 @@
     <Compile Include="OrderBotTags\Gather\ExSpearFishTag.cs" />
     <Compile Include="OrderBotTags\Gather\Rotations\Collect500GatheringRotation.cs" />
     <Compile Include="OrderBotTags\Gather\Rotations\Collect516GatheringRotation.cs" />
+    <Compile Include="OrderBotTags\Gather\Rotations\SmartYieldAndQualityGatheringRotation.cs" />
     <Compile Include="OrderBotTags\Gather\SpearResult.cs" />
     <Compile Include="OrderBotTags\Gather\Strategies\AfterGatherGpRegenStrategy.cs" />
     <Compile Include="OrderBotTags\Gather\Strategies\BeforeGatherGpRegenStrategy.cs" />
@@ -288,7 +289,6 @@
     <Compile Include="OrderBotTags\Gather\Rotations\SmartYieldGatheringRotation.cs" />
     <Compile Include="OrderBotTags\Gather\Rotations\TopsoilGatheringRotation.cs" />
     <Compile Include="OrderBotTags\Gather\Rotations\UnspoiledGatheringRotation.cs" />
-    <Compile Include="OrderBotTags\Gather\Rotations\YieldAndQualityGatheringRotation.cs" />
     <Compile Include="OrderBotTags\Objects\CollectableBase.cs" />
     <Compile Include="OrderBotTags\Objects\CollectableTurnIn.cs" />
     <Compile Include="Plugins\Skywatcher\FF14AnglerWeatherProvider.cs" />

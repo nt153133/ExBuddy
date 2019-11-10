@@ -26,9 +26,7 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
 		public override async Task<bool> ExecuteRotation(ExGatherTag tag)
 		{
-			var level = Core.Player.ClassLevel;
-
-			if (level >= 57)
+			if (Core.Player.ClassLevel >= 57)
 			{
 				if (tag.CollectableItem.PlusPlus == 2)
 				{
@@ -49,7 +47,7 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
 			if (rarity <= 124)
 			{
-				if (level >= 53)
+				if (Core.Player.ClassLevel >= 53)
 				{
 					await CallRotation(tag, "Try Harder", TryHarder);
 				}
@@ -63,7 +61,7 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
 			if (rarity >= 125 && rarity <= 134)
 			{
-				if (level >= 53)
+				if (Core.Player.ClassLevel >= 53)
 				{
 					await CallRotation(tag, "Try Hard", TryHard);
 				}
@@ -77,7 +75,7 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
 			if (rarity >= 135 && rarity <= 137)
 			{
-				if (level >= 51)
+				if (Core.Player.ClassLevel >= 51)
 				{
 					await CallRotation(tag, "Get One", GetOne);
 				}
@@ -91,11 +89,11 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
 			if (rarity >= 138 && rarity <= 140)
 			{
-				if (level >= 57)
+				if (Core.Player.ClassLevel >= 57)
 				{
 					await CallRotation(tag, "Get One+", GetOnePlus);
 				}
-				else if (level >= 51)
+				else if (Core.Player.ClassLevel >= 51)
 				{
 					await CallRotation(tag, "Get One", GetOne);
 				}
@@ -109,13 +107,13 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
 			if (rarity >= 141 && rarity <= 149)
 			{
-				if (level >= 57)
+				if (Core.Player.ClassLevel >= 57)
 				{
 					tag.Logger.Info(
 						"Hey! Listen! You can update this item to use Get One++!!! Using Rotation: Get One+ for now... :'(");
 					await CallRotation(tag, "Get One+", GetOnePlus);
 				}
-				else if (level >= 51)
+				else if (Core.Player.ClassLevel >= 51)
 				{
 					await CallRotation(tag, "Get One", GetOne);
 				}
@@ -135,7 +133,7 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
 			if (rarity >= 156 && rarity <= 160)
 			{
-				if (level >= 57)
+				if (Core.Player.ClassLevel >= 57)
 				{
 					await CallRotation(tag, "Get Two+", GetTwoPlus);
 				}
@@ -149,7 +147,7 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
 			if (rarity >= 161 && rarity <= 168)
 			{
-				if (level >= 57)
+				if (Core.Player.ClassLevel >= 57)
 				{
 					tag.Logger.Info(
 						"Hey! Listen! You can update this item to use Get Two++!!! Using Rotation: Get Two+ for now... :'(");
@@ -165,7 +163,7 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
 			if (rarity >= 169)
 			{
-				if (level >= 57)
+				if (Core.Player.ClassLevel >= 57)
 				{
 					await CallRotation(tag, "Get Three", GetThree);
 				}

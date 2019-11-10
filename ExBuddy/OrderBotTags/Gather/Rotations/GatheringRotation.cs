@@ -13,8 +13,8 @@
     public abstract class GatheringRotation : IGatheringRotation
 	{
 		protected internal static readonly uint[] WardSkills = { 236U, 293U, 234U, 292U, 217U, 219U };
-
-		protected internal readonly IGetOverridePriority GetOverridePriorityCached;
+        
+        protected internal readonly IGetOverridePriority GetOverridePriorityCached;
 
 		protected GatheringRotation()
 		{
@@ -36,42 +36,96 @@
 					await Coroutine.Yield();
 				}
 			}
-		}
+        }
 
-		protected virtual async Task<bool> IncreaseChance(ExGatherTag tag)
-		{
-			var level = Core.Player.ClassLevel;
-			if (Core.Player.CurrentGP >= 250 && tag.GatherItem.Chance < 51 && level > 10)
-			{
-				return await tag.Cast(Ability.IncreaseGatherChance50);
-			}
+        protected virtual async Task<bool> IncreaseChance(ExGatherTag tag)
+        {
+            if (Core.Player.CurrentGP >= 250 && tag.GatherItem.Chance < 51 && Core.Player.ClassLevel > 9)
+            {
+                return await tag.Cast(Ability.IncreaseGatherChance50);
+            }
 
-			if (Core.Player.CurrentGP >= 100 && tag.GatherItem.Chance < 95 && level > 4)
-			{
-				if (level >= 23 && GatheringManager.SwingsRemaining == 1)
-				{
-					return await tag.Cast(Ability.IncreaseGatherChanceOnce15);
-				}
+            if (Core.Player.CurrentGP >= 100 && tag.GatherItem.Chance < 95 && Core.Player.ClassLevel > 4)
+            {
+                if (Core.Player.ClassLevel >= 23 && GatheringManager.SwingsRemaining == 1)
+                {
+                    return await tag.Cast(Ability.IncreaseGatherChanceOnce15);
+                }
 
-				return await tag.Cast(Ability.IncreaseGatherChance15);
-			}
+                return await tag.Cast(Ability.IncreaseGatherChance15);
+            }
 
-			if (Core.Player.CurrentGP >= 50 && tag.GatherItem.Chance < 100 && level > 3)
-			{
-				if (level >= 23 && GatheringManager.SwingsRemaining == 1)
-				{
-					return await tag.Cast(Ability.IncreaseGatherChanceOnce15);
-				}
+            if (Core.Player.CurrentGP >= 50 && tag.GatherItem.Chance < 100 && Core.Player.ClassLevel > 3)
+            {
+                if (Core.Player.ClassLevel >= 23 && GatheringManager.SwingsRemaining == 1)
+                {
+                    return await tag.Cast(Ability.IncreaseGatherChanceOnce15);
+                }
 
-				return await tag.Cast(Ability.IncreaseGatherChance5);
-			}
+                return await tag.Cast(Ability.IncreaseGatherChance5);
+            }
 
-			return true;
-		}
+            return true;
+        }
 
-		#region IGatheringRotation Members
+        protected virtual async Task<bool> IncreaseYield(ExGatherTag tag, bool PickClean = true)
+        {
+            if (Core.Player.CurrentGP >= 250 && Core.Player.ClassLevel >= 77 && PickClean)
+            {
+                return await tag.Cast(Ability.PickClean);
+            }
 
-		public virtual GatheringRotationAttribute Attributes
+            if (Core.Player.CurrentGP >= 500 && Core.Player.ClassLevel >= 40)
+            {
+                return await tag.Cast(Ability.IncreaseGatherYield2);
+            }
+
+            if (Core.Player.CurrentGP >= 400 && Core.Player.ClassLevel >= 30 && (Core.Player.ClassLevel < 40 || Core.Player.MaxGP < 500))
+            {
+                return await tag.Cast(Ability.IncreaseGatherYield);
+            }
+
+            return true;
+        }
+
+        protected virtual async Task<bool> IncreaseQuality(ExGatherTag tag)
+        {
+            if (Core.Player.CurrentGP >= 300 && Core.Player.ClassLevel >= 63)
+            {
+                return await tag.Cast(Ability.IncreaseGatherQuality30100);
+            }
+
+            if (Core.Player.CurrentGP >= 300 && Core.Player.ClassLevel >= 35)
+            {
+                return await tag.Cast(Ability.IncreaseGatherQuality30);
+            }
+
+            if (Core.Player.CurrentGP >= 100 && Core.Player.ClassLevel >= 15)
+            {
+                return await tag.Cast(Ability.IncreaseGatherQuality10);
+            }
+
+            return true;
+        }
+
+        protected virtual async Task<bool> IncreaseYieldAndQuality(ExGatherTag tag, bool PickClean = true)
+        {
+            if (Core.Player.CurrentGP >= 500 && Core.Player.ClassLevel >= 40)
+            {
+                await tag.Cast(Ability.IncreaseGatherYield2);
+            }
+
+            if (Core.Player.CurrentGP >= 400 && Core.Player.ClassLevel >= 30 && (Core.Player.ClassLevel < 40 || Core.Player.MaxGP < 500))
+            {
+                await tag.Cast(Ability.IncreaseGatherYield);
+            }
+
+            return await IncreaseQuality(tag);
+        }
+
+        #region IGatheringRotation Members
+
+        public virtual GatheringRotationAttribute Attributes
 		{
 			get { return ReflectionHelper.CustomAttributes<GatheringRotationAttribute>.NotInherited[GetType().GUID][0]; }
 		}

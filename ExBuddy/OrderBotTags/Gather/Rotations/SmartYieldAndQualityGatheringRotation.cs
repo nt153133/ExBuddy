@@ -8,8 +8,8 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
     using System.Threading.Tasks;
 
     //Name, RequiredTime, RequiredGpBreakpoints
-    [GatheringRotation("SmartYield", 25, 900, 850, 800, 750, 700, 650, 600, 550, 500, 450, 400, 350, 250, 0)]
-    public class SmartYieldGatheringRotation : SmartGatheringRotation, IGetOverridePriority
+    [GatheringRotation("SmartYieldAndQuality", 25, 900, 850, 800, 750, 700, 650, 600, 550, 500, 0)]
+    public class SmartYieldAndQualityGatheringRotation : SmartGatheringRotation, IGetOverridePriority
     {
         #region IGetOverridePriority Members
 
@@ -20,8 +20,13 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
                 return -1;
             }
 
-            if (tag.GatherIncrease == GatherIncrease.Yield
-                || (tag.GatherIncrease == GatherIncrease.Auto && Core.Player.ClassLevel >= 40))
+            if (tag.GatherItem != null && tag.GatherItem.HqChance < 1)
+            {
+                return -1;
+            }
+
+            if (tag.GatherIncrease == GatherIncrease.YieldAndQuality
+                || (tag.GatherIncrease == GatherIncrease.Auto && Core.Player.ClassLevel >= 40 && Core.Player.CurrentGP >= 650))
             {
                 return 9001;
             }
@@ -35,7 +40,7 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
         {
             if (GatheringManager.SwingsRemaining > 4 || ShouldForceUseRotation(tag, Core.Player.ClassLevel))
             {
-                await IncreaseYield(tag);
+                await IncreaseYieldAndQuality(tag);
                 return await base.ExecuteRotation(tag);
             }
 

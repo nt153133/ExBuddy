@@ -923,13 +923,22 @@
         {
             return new[]
             {
-                typeof (RegularNodeGatheringRotation), typeof (UnspoiledGatheringRotation),
-                typeof (DefaultCollectGatheringRotation), typeof (Collect115GatheringRotation), typeof (Collect345GatheringRotation),
-                typeof (Collect450GatheringRotation), typeof (Collect470GatheringRotation), typeof (Collect550GatheringRotation),
-                typeof (Collect570GatheringRotation), typeof (DiscoverUnknownsGatheringRotation),
+                typeof (RegularNodeGatheringRotation),
+                typeof (UnspoiledGatheringRotation),
+                typeof (DefaultCollectGatheringRotation),
+                typeof (Collect115GatheringRotation),
+                typeof (Collect345GatheringRotation),
+                typeof (Collect450GatheringRotation),
+                typeof (Collect470GatheringRotation),
+                typeof (Collect550GatheringRotation),
+                typeof (Collect570GatheringRotation),
+                typeof (DiscoverUnknownsGatheringRotation),
                 typeof (ElementalGatheringRotation),
-                typeof (TopsoilGatheringRotation), typeof (MapGatheringRotation), typeof (SmartQualityGatheringRotation),
-                typeof (SmartYieldGatheringRotation), typeof (YieldAndQualityGatheringRotation),
+                typeof (TopsoilGatheringRotation),
+                typeof (MapGatheringRotation),
+                typeof (SmartQualityGatheringRotation),
+                typeof (SmartYieldGatheringRotation),
+                typeof (SmartYieldAndQualityGatheringRotation),
                 typeof (NewbCollectGatheringRotation)
             };
         }

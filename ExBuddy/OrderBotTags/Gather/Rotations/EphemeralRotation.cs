@@ -27,14 +27,11 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
 		public override async Task<bool> ExecuteRotation(ExGatherTag tag)
 		{
-			var level = Core.Player.ClassLevel;
-			var gp = Core.Player.CurrentGP;
-
 			// Yield And Quality
 			if (tag.GatherIncrease == GatherIncrease.YieldAndQuality
-				|| (tag.GatherIncrease == GatherIncrease.Auto && level >= 40 && gp >= 650))
+				|| (tag.GatherIncrease == GatherIncrease.Auto && Core.Player.ClassLevel >= 40 && Core.Player.CurrentGP >= 650))
 			{
-				if (gp >= 500 && level >= 40)
+				if (Core.Player.CurrentGP >= 500 && Core.Player.ClassLevel >= 40)
 				{
 					await tag.Cast(Ability.IncreaseGatherYield2);
 
@@ -50,21 +47,21 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 			}
 
 			// Yield
-			if (tag.GatherIncrease == GatherIncrease.Yield || (tag.GatherIncrease == GatherIncrease.Auto && level >= 40))
+			if (tag.GatherIncrease == GatherIncrease.Yield || (tag.GatherIncrease == GatherIncrease.Auto && Core.Player.ClassLevel >= 40))
 			{
-				if (gp >= 500 && level >= 40)
+				if (Core.Player.CurrentGP >= 500 && Core.Player.ClassLevel >= 40)
 				{
 					await tag.Cast(Ability.IncreaseGatherYield2);
 					return await base.ExecuteRotation(tag);
 				}
 
-				if (gp >= 400 && level >= 30 && (level < 40 || Core.Player.MaxGP < 500))
+				if (Core.Player.CurrentGP >= 400 && Core.Player.ClassLevel >= 30 && (Core.Player.ClassLevel < 40 || Core.Player.MaxGP < 500))
 				{
 					await tag.Cast(Ability.IncreaseGatherYield);
 					return await base.ExecuteRotation(tag);
 				}
 
-				if (gp >= 300 && level >= 25 && (level < 30 || Core.Player.MaxGP < 400))
+				if (Core.Player.CurrentGP >= 300 && Core.Player.ClassLevel >= 25 && (Core.Player.ClassLevel < 30 || Core.Player.MaxGP < 400))
 				{
 					await Wait();
 
@@ -82,7 +79,7 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
 			// Quality
 			if (tag.GatherIncrease == GatherIncrease.Quality
-				|| (tag.GatherIncrease == GatherIncrease.Auto && level >= 15 && level < 40))
+				|| (tag.GatherIncrease == GatherIncrease.Auto && Core.Player.ClassLevel >= 15 && Core.Player.ClassLevel < 40))
 			{
 				if (Core.Player.CurrentGP >= 300)
 				{
