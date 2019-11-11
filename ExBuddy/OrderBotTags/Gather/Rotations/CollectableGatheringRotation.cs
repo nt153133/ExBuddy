@@ -131,6 +131,11 @@
 		{
 			await tag.Cast(Ability.MethodicalAppraisal);
 		}
+		
+		protected async Task Stickler(ExGatherTag tag)
+		{
+			await tag.Cast(Ability.Stickler);
+		}
 
 		protected async Task DiscerningMethodical(ExGatherTag tag)
 		{

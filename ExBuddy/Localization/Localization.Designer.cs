@@ -340,7 +340,16 @@ namespace ExBuddy.Localization {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Will fish for .
+        ///   Looks up a localized string similar to Using Identical Cast on {0}..
+        /// </summary>
+        internal static string ExFish_IdenticalCast {
+            get {
+                return ResourceManager.GetString("ExFish_IdenticalCast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Will fish for .
         /// </summary>
         internal static string ExFish_InitFishSpot {
             get {

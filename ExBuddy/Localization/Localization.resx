@@ -214,7 +214,7 @@
     <value>Patience activated</value>
   </data>
   <data name="ExFish_Release" xml:space="preserve">
-    <value>Released </value>
+    <value>Released {0}.</value>
   </data>
   <data name="ExFish_ResetCount" xml:space="preserve">
     <value>Resetting fish count...</value>
@@ -731,5 +731,8 @@
   </data>
   <data name="ExSpearFish_UsingIdenticalGig" xml:space="preserve">
     <value>Using Identical Gig on {0}.</value>
+  </data>
+  <data name="ExFish_IdenticalCast" xml:space="preserve">
+    <value>Using Identical Cast on {0}.</value>
   </data>
 </root>
