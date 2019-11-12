@@ -939,7 +939,11 @@
                 typeof (SmartQualityGatheringRotation),
                 typeof (SmartYieldGatheringRotation),
                 typeof (SmartYieldAndQualityGatheringRotation),
-                typeof (NewbCollectGatheringRotation)
+                typeof (NewbCollectGatheringRotation),
+                typeof (CollectEndGameGatheringRotation),
+                typeof (EndGameEphemeralGatheringRotation),
+                typeof (EndGameYieldAndQualityGatheringRotation),
+                typeof (EndGameYieldRotation)
             };
         }
 
