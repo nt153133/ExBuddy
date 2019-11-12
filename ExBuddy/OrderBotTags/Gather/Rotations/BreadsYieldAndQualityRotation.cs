@@ -90,7 +90,7 @@
 
             var bountifulYield = tag.GatherItem.Level <= 70 ? 3 : 2;
 
-            double uncappedYields = Math.Floor(Core.Player.CurrentGP + (GatheringManager.MaxSwings * 5) / 100d);
+            double uncappedYields = Math.Floor((Core.Player.CurrentGP + (GatheringManager.MaxSwings - 1) * 5) / 100d);
 
             if (Core.Player.CurrentGP >= 500 && level >= 40)
             {
