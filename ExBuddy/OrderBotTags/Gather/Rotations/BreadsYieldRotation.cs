@@ -52,23 +52,9 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
                 return true;
             }
 
-            var endlessToil = tag.GatherItem.Level <= 60 ? 0 : 1;
-
             double YieldsLeft()
             {
-                double result;
-                double maxSwings = GatheringManager.MaxSwings;
-                double swingsRemaining = GatheringManager.SwingsRemaining;
-                double currentGp = Core.Player.CurrentGP;
-                if (GatheringManager.MaxSwings == GatheringManager.SwingsRemaining)
-                {
-                    result = Math.Min(maxSwings - endlessToil, Math.Max(0, (currentGp + (maxSwings - (endlessToil + 1)) * 5) / 100));
-                }
-                else
-                {
-                    result = Math.Min(swingsRemaining, Math.Max(0, (currentGp + (swingsRemaining - 1) * 5) / 100));
-                }
-                return result;
+                return Math.Min(GatheringManager.SwingsRemaining, Math.Max(0, (Core.Player.CurrentGP + GatheringManager.SwingsRemaining * 5) / 100));
             }
 
             var bountifulYield = tag.GatherItem.Level <= 70 ? 3 : 2;
@@ -82,23 +68,22 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
             if (Core.Player.CurrentGP >= 250 && level >= 77)
             {
-                var yieldCalc = Math.Max(0, (Core.Player.CurrentGP + (GatheringManager.MaxSwings - (endlessToil + 1)) * 5) / 100.0);
+                var yieldCalc = Math.Max(0, (Core.Player.CurrentGP + (GatheringManager.MaxSwings - 1) * 5) / 100.0);
                 var adjustedGp = yieldCalc - Math.Floor(yieldCalc);
-                Logger.Instance.Info("adjustedGp = {0}", adjustedGp);
                 var pickCleanBonus = adjustedGp >= 0.50 && adjustedGp <= 0.999 ? 1 : 0;
 
-                if (pickCleanYield * (GatheringManager.MaxSwings - endlessToil) > bountifulYield * (3 - pickCleanBonus))
+                if (pickCleanYield * GatheringManager.MaxSwings > bountifulYield * (3 - pickCleanBonus))
                 {
                     await tag.Cast(Ability.PickClean);
                     await Wait();
                 }
             }
 
-            double uncappedYields = Math.Floor((Core.Player.CurrentGP + (GatheringManager.MaxSwings - (endlessToil + 1)) * 5) / 100d);
+            double uncappedYields = Math.Floor((Core.Player.CurrentGP + (GatheringManager.MaxSwings - 1) * 5) / 100d);
 
             if (Core.Player.CurrentGP >= 500 && level >= 40)
             {
-                if (((GatheringManager.MaxSwings - endlessToil) * 2) + (uncappedYields - 5) >= bountifulYield * Math.Floor(YieldsLeft()))
+                if ((GatheringManager.MaxSwings * 2) + (uncappedYields - 5) >= bountifulYield * Math.Floor(YieldsLeft()))
                 {
                     await tag.Cast(Ability.IncreaseGatherYield2);
                     await Wait();

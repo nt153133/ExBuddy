@@ -83,21 +83,18 @@
                 await Wait();
             }
 
-            var endlessToil = tag.GatherItem.Level <= 60 ? 0 : 1;
-
             double YieldsLeft()
-            {
-                if (GatheringManager.MaxSwings == GatheringManager.SwingsRemaining) return Math.Min(GatheringManager.MaxSwings - endlessToil, Math.Max(0, (Core.Player.CurrentGP + (GatheringManager.MaxSwings - (endlessToil + 1)) * 5) / 100));
-                else return Math.Min(GatheringManager.SwingsRemaining, Math.Max(0, (Core.Player.CurrentGP + (GatheringManager.SwingsRemaining - 1) * 5) / 100));
+            { 
+                return Math.Min(GatheringManager.SwingsRemaining, Math.Max(0, (Core.Player.CurrentGP + GatheringManager.SwingsRemaining * 5) / 100));
             }
 
             var bountifulYield = tag.GatherItem.Level <= 70 ? 3 : 2;
 
-            double uncappedYields = Math.Floor((Core.Player.CurrentGP + (GatheringManager.MaxSwings - (endlessToil + 1)) * 5) / 100d);
+            double uncappedYields = Math.Floor(Core.Player.CurrentGP + (GatheringManager.MaxSwings * 5) / 100d);
 
             if (Core.Player.CurrentGP >= 500 && level >= 40)
             {
-                if (((GatheringManager.MaxSwings - endlessToil) * 2) + (uncappedYields - 5) >= bountifulYield * Math.Floor(YieldsLeft()))
+                if ((GatheringManager.MaxSwings * 2) + (uncappedYields - 5) >= bountifulYield * Math.Floor(YieldsLeft()))
                 {
                     await tag.Cast(Ability.IncreaseGatherYield2);
                     await Wait();
