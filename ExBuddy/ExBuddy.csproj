@@ -35,18 +35,27 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\RebornBuddy\Rebornbuddy64\Clio.Localization.dll</HintPath>
     </Reference>
+    <Reference Include="Clio.Localization, Version=1.0.329.0, Culture=neutral, PublicKeyToken=48d7174f8a943034">
+      <HintPath>..\..\Clio.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="GreyMagic, Version=1.0.41.0, Culture=neutral, PublicKeyToken=260525fa2b0e778a">
+      <HintPath>..\..\GreyMagic.dll</HintPath>
+    </Reference>
     <Reference Include="GreyMagic, Version=1.0.41.0, Culture=neutral, PublicKeyToken=260525fa2b0e778a, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\RebornBuddy\Rebornbuddy64\GreyMagic.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Quest Behaviors_698175896">
-      <HintPath>..\..\RebornBuddy\Rebornbuddy64\CompiledAssemblies\Quest Behaviors_698175896.dll</HintPath>
+    <Reference Include="Quest Behaviors_1759427317, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\CompiledAssemblies\Quest Behaviors_1759427317.dll</HintPath>
     </Reference>
     <Reference Include="RebornBuddy, Version=1.0.168.0, Culture=neutral, PublicKeyToken=48d7174f8a943034, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\RebornBuddy\Rebornbuddy64\RebornBuddy.exe</HintPath>
+    </Reference>
+    <Reference Include="RebornBuddy, Version=1.0.329.0, Culture=neutral, PublicKeyToken=48d7174f8a943034">
+      <HintPath>..\..\RebornBuddy.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -67,6 +76,7 @@
     <Compile Include="Data\RequiredItemResult.cs" />
     <Compile Include="Data\SqlData.cs" />
     <Compile Include="Helpers\EorzeaTimeHelper.cs" />
+    <Compile Include="Helpers\GetRetainerNum.cs" />
     <Compile Include="Helpers\Lazier.cs" />
     <Compile Include="Helpers\CharacterResource.cs" />
     <Compile Include="Helpers\ConditionTimer.cs" />
@@ -112,6 +122,10 @@
     <Compile Include="OrderBotTags\Behaviors\ExFlyToTag.cs" />
     <Compile Include="OrderBotTags\Behaviors\Objects\ShopJob.cs" />
     <Compile Include="OrderBotTags\Gather\ExSpearFishTag.cs" />
+    <Compile Include="OrderBotTags\Gather\Rotations\BreadsCollectableRotation.cs" />
+    <Compile Include="OrderBotTags\Gather\Rotations\BreadsEphemeralRotation.cs" />
+    <Compile Include="OrderBotTags\Gather\Rotations\BreadsYieldAndQualityRotation.cs" />
+    <Compile Include="OrderBotTags\Gather\Rotations\BreadsYieldRotation.cs" />
     <Compile Include="OrderBotTags\Gather\Rotations\Collect500GatheringRotation.cs" />
     <Compile Include="OrderBotTags\Gather\Rotations\Collect516GatheringRotation.cs" />
     <Compile Include="OrderBotTags\Gather\Rotations\SmartYieldAndQualityGatheringRotation.cs" />

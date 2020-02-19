@@ -1,5 +1,7 @@
 ﻿// ReSharper disable once CheckNamespace
 
+using ExBuddy.Helpers;
+
 namespace ExBuddy.OrderBotTags.Behaviors
 {
     using Buddy.Coroutines;
@@ -7,16 +9,12 @@ namespace ExBuddy.OrderBotTags.Behaviors
     using ExBuddy.Windows;
     using ff14bot.Managers;
     using ff14bot.RemoteWindows;
-    using System.ComponentModel;
     using System.Linq;
     using System.Threading.Tasks;
 
     [XmlElement("EtxRetainer")]
     public class EtxRetainer : ExProfileBehavior
     {
-        [DefaultValue(2)]
-        [XmlAttribute("RetainerCount")]
-        public int RetainerCount { get; set; }
 
         public new void Log(string text, params object[] args) { Logger.Info(text, args); }
 
@@ -26,7 +24,8 @@ namespace ExBuddy.OrderBotTags.Behaviors
             var retainerList = new RetainerList();
 
             foreach (var unit in GameObjectManager.GameObjects.OrderBy(r => r.Distance()))
-                if (unit.NpcId == 2000401 || unit.NpcId == 2000441)
+                if (unit.NpcId == 2000401 || unit.NpcId == 2000441 || unit.Name == "Summoning Bell" || unit.Name == "Sonnette" || unit.Name == "Krämerklingel" ||
+                unit.Name == "リテイナーベル" || unit.Name == "传唤铃")
                 {
                     unit.Interact();
                     break;
@@ -34,8 +33,9 @@ namespace ExBuddy.OrderBotTags.Behaviors
 
             if (!await Coroutine.Wait(5000, () => RetainerList.IsOpen)) return isDone = true;
             {
+                int retainerCount = GetRetainerNum.GetNumberOfRetainers();
                 uint index = 0;
-                while (index < RetainerCount)
+                while (index < retainerCount)
                 {
                     Log("Checking Retainer n° " + (index + 1));
                     await Coroutine.Sleep(200);
