@@ -44,7 +44,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
                     await Coroutine.Wait(5000, () => SelectString.IsOpen);
                     string ventureLine = SelectString.Lines()[5];
                     Log("Venture Status : " + ventureLine);
-                    if (ventureLine.EndsWith("(Complete)") || ventureLine.EndsWith("Unternehmung einsehen") || ventureLine.EndsWith("tâche terminée") || ventureLine.EndsWith("[完了]") || ventureLine.EndsWith("[探险归来]"))
+                    if (ventureLine.EndsWith("(Complete)") || ventureLine.EndsWith("Unternehmung einsehen") || ventureLine.EndsWith("tâche terminée") || ventureLine.EndsWith("[完了]") || ventureLine.EndsWith("[探险归来]") || ventureLine.EndsWith("[结束]"))
                     {
                         Log("Venture Completed !");
                         // Click on the completed venture
