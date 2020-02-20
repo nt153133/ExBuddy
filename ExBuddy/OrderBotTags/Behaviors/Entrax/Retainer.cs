@@ -73,6 +73,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
                     index++;
                 }
                 Log("No more Retainer to check");
+                await retainerList.Refresh(200);
                 await retainerList.CloseInstanceGently();
                 return isDone = true;
             }
