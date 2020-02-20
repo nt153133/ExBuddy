@@ -13,7 +13,7 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
     using System;
 
     //Name, RequiredTime, RequiredGpBreakpoints
-    [GatheringRotation("BreadsYield", 25, 830, 780, 730, 680, 630, 580, 530, 480, 430, 380, 330, 0)]
+    [GatheringRotation("BreadsYield", 25, 830, 820, 780, 730, 680, 630, 580, 530, 480, 430, 380, 330, 0)]
     public class EndGameYieldRotation : SmartGatheringRotation, IGetOverridePriority
     {
         private readonly ushort level = Core.Player.ClassLevel;
