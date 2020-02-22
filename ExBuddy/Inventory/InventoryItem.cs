@@ -2,16 +2,16 @@
 
 namespace ExBuddy.Inventory
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
     using Buddy.Coroutines;
     using ff14bot;
     using ff14bot.Managers;
     using ff14bot.Objects;
     using Helpers;
     using OrderBotTags.Behaviors;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
 
     /// <summary>
     /// Utility wrapper and tracker around a specific in-game item.

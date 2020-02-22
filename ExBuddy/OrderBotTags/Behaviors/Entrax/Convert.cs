@@ -2,17 +2,17 @@
 
 namespace ExBuddy.OrderBotTags.Behaviors
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Buddy.Coroutines;
     using Clio.XmlEngine;
     using ff14bot;
     using ff14bot.Behavior;
     using ff14bot.Enums;
     using ff14bot.Managers;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     [XmlElement("EtxConvert")]
     public class EtxConvert : ExProfileBehavior
@@ -27,7 +27,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
         [DefaultValue(true)]
         [XmlAttribute("NqOnly")]
         public bool NqOnly { get; set; }
-        
+
         public new void Log(string text, params object[] args) { Logger.Info(text, args); }
 
         protected override async Task<bool> Main()
@@ -46,7 +46,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
             await CommonTasks.StopAndDismount();
             if (ItemIds == null || ItemIds.Length <= 0) return isDone = true;
             foreach (var id in ItemIds)
-                await ConvertByItemId((uint) id, (ushort) MaxWait, NqOnly);
+                await ConvertByItemId((uint)id, (ushort)MaxWait, NqOnly);
             return isDone = true;
         }
 

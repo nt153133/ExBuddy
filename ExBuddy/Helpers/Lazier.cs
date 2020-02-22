@@ -18,7 +18,7 @@ namespace ExBuddy.Helpers
 
         private T value;
         private Exception exception;
-        
+
         /// <summary>
         /// Instantiates a new instance of the <see cref="Lazier{T}"/> class.
         /// </summary>
@@ -31,7 +31,7 @@ namespace ExBuddy.Helpers
             this.init = initializationFunction;
             this.resetOnNull = resetOnNull;
         }
-        
+
         /// <summary>
         /// Gets the value returned by the initialization Func. If Func returns null, this instance
         /// is not considered initialized.
@@ -42,7 +42,7 @@ namespace ExBuddy.Helpers
             {
                 if (this.IsValueCreated) return this.value;
                 if (this.exception != null) throw exception;
-                
+
                 if (this.safetyMode == LazyThreadSafetyMode.ExecutionAndPublication)
                 {
                     lock (this.syncLock)

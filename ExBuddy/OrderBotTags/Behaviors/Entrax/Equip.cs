@@ -2,14 +2,14 @@
 
 namespace ExBuddy.OrderBotTags.Behaviors
 {
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Buddy.Coroutines;
     using Clio.XmlEngine;
     using ff14bot;
     using ff14bot.Managers;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     [XmlElement("EtxEquip")]
     public class EtxEquip : ExProfileBehavior
@@ -42,7 +42,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
             }
             if (ItemIds == null || ItemIds.Length <= 0) return isDone = true;
             foreach (var id in ItemIds)
-                await EquipByItemId((uint) id, NqOnly);
+                await EquipByItemId((uint)id, NqOnly);
             return isDone = true;
         }
 

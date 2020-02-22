@@ -1,14 +1,5 @@
 ﻿namespace ExBuddy.OrderBotTags.Gather
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Globalization;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using System.Windows.Media;
-    using Windows;
     using Attributes;
     using Behaviors;
     using Buddy.Coroutines;
@@ -29,7 +20,16 @@
     using Localization;
     using Objects;
     using Strategies;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Globalization;
+    using System.Linq;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Windows.Media;
     using TreeSharp;
+    using Windows;
 
     [LoggerName("ExSpearFish")]
     [XmlElement("ExSpearFish")]
@@ -130,7 +130,7 @@
             {
                 HotSpots.Index = 0;
             }
-            
+
             ResetInternal();
         }
 
@@ -159,7 +159,7 @@
 
             // backwards compatibility
             if (GatherObjects == null && !string.IsNullOrWhiteSpace(GatherObject))
-                GatherObjects = new List<string> {GatherObject};
+                GatherObjects = new List<string> { GatherObject };
 
             startTime = DateTime.Now;
 
@@ -167,7 +167,7 @@
                 Items = new NamedItemCollection();
 
             if (Collect && Collectables == null)
-                Collectables = new List<Collectable> {new Collectable {Name = string.Empty, Value = (int) CollectabilityValue}};
+                Collectables = new List<Collectable> { new Collectable { Name = string.Empty, Value = (int)CollectabilityValue } };
 
             if (string.IsNullOrWhiteSpace(Name))
                 Name = Items.Count > 0 ? Items.First().Name : string.Format(Localization.ExGather_Zone, WorldManager.ZoneId, ExProfileBehavior.Me.Location);
@@ -217,7 +217,7 @@
             if (spearFishMatch.Success)
             {
                 spearResult.Name = spearFishMatch.Groups[1].Value;
-                float.TryParse(spearFishMatch.Groups[2].Value, NumberStyles.Number,CultureInfo.InvariantCulture.NumberFormat, out var size);
+                float.TryParse(spearFishMatch.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture.NumberFormat, out var size);
                 if (spearResult.Name[spearResult.Name.Length - 2] == ' ')
                     spearResult.IsHighQuality = true;
 #endif
@@ -260,7 +260,7 @@
                 return false;
 
             if (ExProfileBehavior.Me.ClassLevel < 66
-                || ExProfileBehavior.Me.HasAura((uint) AbilityAura.TruthOfOceans))
+                || ExProfileBehavior.Me.HasAura((uint)AbilityAura.TruthOfOceans))
                 return false;
 
             return
@@ -543,12 +543,12 @@
                 // TODO: Smart stealth implementation (where any enemy within x distance and i'm not behind them, use stealth approach and set stealth location as current)
                 // If flying, land in area closest to node not in sight of an enemy and stealth.
                 case GatherSpotType.StealthGatherSpot:
-                    GatherSpot = new StealthGatherSpot {NodeLocation = location, UseMesh = useMesh};
+                    GatherSpot = new StealthGatherSpot { NodeLocation = location, UseMesh = useMesh };
                     break;
                 // ReSharper disable once RedundantCaseLabel
                 case GatherSpotType.GatherSpot:
                 default:
-                    GatherSpot = new GatherSpot {NodeLocation = location, UseMesh = useMesh};
+                    GatherSpot = new GatherSpot { NodeLocation = location, UseMesh = useMesh };
                     break;
             }
         }
@@ -663,7 +663,7 @@
             }
             else
             {
-                if (Core.Player.HasAura((int) AbilityAura.CollectorsGlove))
+                if (Core.Player.HasAura((int)AbilityAura.CollectorsGlove))
                     return await Cast(Ability.CollectorsGlove);
             }
 
@@ -730,7 +730,7 @@
                     }
 
                     if (ticks > 60)
-                        required = (uint) Collectables.Select(c => c.Value).Max();
+                        required = (uint)Collectables.Select(c => c.Value).Max();
                 }
 
                 if (item != null)
@@ -739,7 +739,7 @@
                     var collectable = Collectables.FirstOrDefault(c => string.Equals(c.Name, item.EnglishName));
 
                     if (collectable != null)
-                        required = (uint) collectable.Value;
+                        required = (uint)collectable.Value;
                 }
             }
 
@@ -807,7 +807,7 @@
         private async Task<bool> UseCordial(CordialType cordialType, int maxTimeoutSeconds = 5)
         {
             if (!(CordialSpellData.Cooldown.TotalSeconds < maxTimeoutSeconds)) return false;
-            var cordial = InventoryManager.FilledSlots.FirstOrDefault(slot => slot.RawItemId == (uint) cordialType);
+            var cordial = InventoryManager.FilledSlots.FirstOrDefault(slot => slot.RawItemId == (uint)cordialType);
 
             if (cordial != null)
             {
@@ -815,7 +815,7 @@
 
                 Logger.Info(
                     Localization.ExFish_UseCordial,
-                    (int) CordialSpellData.Cooldown.TotalSeconds,
+                    (int)CordialSpellData.Cooldown.TotalSeconds,
                     ExProfileBehavior.Me.CurrentGP);
 
                 if (!await Coroutine.Wait(

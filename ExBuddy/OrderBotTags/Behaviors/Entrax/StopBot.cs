@@ -2,10 +2,10 @@
 
 namespace ExBuddy.OrderBotTags.Behaviors
 {
-    using System.Threading.Tasks;
     using Buddy.Coroutines;
     using Clio.XmlEngine;
     using ff14bot;
+    using System.Threading.Tasks;
 
     [XmlElement("EtxStopBot")]
     public class EtxStopBot : ExProfileBehavior

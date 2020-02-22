@@ -1,21 +1,21 @@
 ﻿namespace ExBuddy.Helpers
 {
-	using ff14bot.Enums;
-	using System.Collections.Generic;
+    using ff14bot.Enums;
+    using System.Collections.Generic;
 
-	internal static class Abilities
-	{
-		internal static readonly Dictionary<ClassJobType, Dictionary<Ability, uint>> Map =
-			new Dictionary<ClassJobType, Dictionary<Ability, uint>>
-			{
-				{
-					ClassJobType.Botanist,
-					new Dictionary<Ability, uint>
+    internal static class Abilities
+    {
+        internal static readonly Dictionary<ClassJobType, Dictionary<Ability, uint>> Map =
+            new Dictionary<ClassJobType, Dictionary<Ability, uint>>
+            {
+                {
+                    ClassJobType.Botanist,
+                    new Dictionary<Ability, uint>
                     {
                         {Ability.IncreaseGatherChance5, 218},
                         {Ability.IncreaseGatherChance15, 220},
                         {Ability.Sneak, 304},
-						{Ability.IncreaseGatherChance50, 294},
+                        {Ability.IncreaseGatherChance50, 294},
                         {Ability.Preparation, 213},
                         {Ability.IncreaseGatherQuality10, 225},
                         {Ability.IncreaseElementalGatherYield, 282},
@@ -38,15 +38,15 @@
                         {Ability.IncreaseGatherQualityOnce10, 4096},
                         {Ability.IncreaseGatherQualityOnce20, 4097},
                         {Ability.ImpulsiveAppraisalII, 302},
-                        {Ability.IncreaseGatherQuality30100, 271},                        
+                        {Ability.IncreaseGatherQuality30100, 271},
                         {Ability.IncreaseGatherQualityRandomOnce, 275},
                         {Ability.IncreaseGatherYieldOnce2, 273},
                         {Ability.Stickler, 4594},
                         {Ability.TheGivingLand, 4590},
                         {Ability.PickClean, 4588},
                         {Ability.Mind, 4606}
-					}
-				},
+                    }
+                },
                 {
                     ClassJobType.Miner,
                     new Dictionary<Ability, uint>
@@ -126,20 +126,20 @@
                     }
                 }
             };
-	}
+    }
 
-	internal enum AbilityAura : short
-	{
-		None = -1,
+    internal enum AbilityAura : short
+    {
+        None = -1,
         Sneak = 47,
-		TruthOfForests = 221,
+        TruthOfForests = 221,
         TruthOfMountains = 222,
         DiscerningEye = 757,
-		CollectorsGlove = 805,
+        CollectorsGlove = 805,
         TruthOfOceans = 1173
     }
 
-	internal enum Ability : byte
+    internal enum Ability : byte
     {
         None,
 

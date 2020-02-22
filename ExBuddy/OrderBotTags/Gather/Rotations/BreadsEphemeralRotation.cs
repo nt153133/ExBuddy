@@ -1,10 +1,10 @@
 ﻿namespace ExBuddy.OrderBotTags.Gather.Rotations
 {
     using ExBuddy.Attributes;
-    using ExBuddy.Interfaces;
-    using ExBuddy.OrderBotTags.Gather;
-    using ExBuddy.Logging;
     using ExBuddy.Helpers;
+    using ExBuddy.Interfaces;
+    using ExBuddy.Logging;
+    using ExBuddy.OrderBotTags.Gather;
     using ff14bot;
     using ff14bot.Managers;
     using System.Threading.Tasks;
@@ -80,11 +80,11 @@
             await Stickler(tag);
             goto Collect;
 
-        BadRNG:
+            BadRNG:
             if (Core.Player.CurrentGP < 200) Logger.Instance.Info("Not enough GP for a bad RNG finisher. Collecting anyways. Current GP: {0}", Core.Player.CurrentGP);
             await Stickler(tag);
 
-        Collect:
+            Collect:
             await IncreaseChance(tag);
             return true;
         }

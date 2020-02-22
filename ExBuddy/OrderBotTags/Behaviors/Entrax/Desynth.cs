@@ -2,17 +2,17 @@
 
 namespace ExBuddy.OrderBotTags.Behaviors
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Buddy.Coroutines;
     using Clio.XmlEngine;
     using ff14bot;
     using ff14bot.Behavior;
     using ff14bot.Enums;
     using ff14bot.Managers;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     [XmlElement("EtxDesynth")]
     public class EtxDesynth : ExProfileBehavior

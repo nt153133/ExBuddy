@@ -2,10 +2,6 @@
 
 namespace ExBuddy.OrderBotTags.Behaviors
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Threading.Tasks;
     using Clio.Utilities;
     using Clio.XmlEngine;
     using ff14bot;
@@ -14,6 +10,10 @@ namespace ExBuddy.OrderBotTags.Behaviors
     using ff14bot.Managers;
     using ff14bot.Navigation;
     using ff14bot.Pathing;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Threading.Tasks;
 
     [XmlElement("EtxFlyTo")]
     public class EtxFlyTo : ExProfileBehavior
@@ -80,7 +80,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
                 return false;
             }
 
-            var parameters = new FlyToParameters(immediateDestination) {CheckIndoors = !IgnoreIndoors};
+            var parameters = new FlyToParameters(immediateDestination) { CheckIndoors = !IgnoreIndoors };
             if (MinHeight > 0)
                 parameters.MinHeight = MinHeight;
 
@@ -129,7 +129,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
             }
             else
             {
-                RoughDestination = new HotSpot(XYZ, 0) {AllowedVariance = AllowedVariance, ArrivalTolerance = ArrivalTolerance};
+                RoughDestination = new HotSpot(XYZ, 0) { AllowedVariance = AllowedVariance, ArrivalTolerance = ArrivalTolerance };
             }
         }
 

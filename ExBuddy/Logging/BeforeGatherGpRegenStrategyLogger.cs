@@ -1,7 +1,7 @@
 ﻿namespace ExBuddy.Logging
 {
-    using System;
     using OrderBotTags.Gather.Strategies;
+    using System;
 
     internal class BeforeGatherGpRegenStrategyLogger : IBeforeGatherGpRegenStrategyLogger
     {

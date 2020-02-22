@@ -1,14 +1,14 @@
 ﻿namespace ExBuddy.OrderBotTags.Gather.Rotations
 {
-    using Buddy.Coroutines;
     using Attributes;
+    using Buddy.Coroutines;
     using Enumerations;
     using ff14bot;
     using ff14bot.Managers;
     using Helpers;
     using Interfaces;
-    using System.Threading.Tasks;
     using System;
+    using System.Threading.Tasks;
 
     //Name, RequiredTime, RequiredGpBreakpoints
     [GatheringRotation("BreadsYieldAndQuality", 25, 800, 775, 675, 575, 475, 375, 0)]
@@ -84,7 +84,7 @@
             }
 
             double YieldsLeft()
-            { 
+            {
                 return Math.Min(GatheringManager.SwingsRemaining, Math.Max(0, (Core.Player.CurrentGP + GatheringManager.SwingsRemaining * 5) / 100));
             }
 

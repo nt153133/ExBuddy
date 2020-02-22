@@ -63,10 +63,10 @@ namespace ExBuddy.Inventory.StockManagers
         public InventoryItem GetFulfillingCordial(int gpNeeded, CordialType cordialType)
         {
             var best = this.cordialStock
-                .Where(k => 
-                    cordialType != CordialType.None 
+                .Where(k =>
+                    cordialType != CordialType.None
                     && (cordialType == CordialType.Auto || k.Key.Id == (uint)cordialType)
-                    && k.Value.Quantity > 0 
+                    && k.Value.Quantity > 0
                     && k.Value.CanUse(ExProfileBehavior.Me)
                     && CordialDataMap[k.Key].Gp >= gpNeeded)
                 .OrderBy(k => CordialDataMap[k.Key].Gp)
@@ -87,7 +87,7 @@ namespace ExBuddy.Inventory.StockManagers
             var best = this.cordialStock
                 .Where(k =>
                     cordialType != CordialType.None
-                    && (cordialType == CordialType.Auto || k.Key.Id == (uint) cordialType)
+                    && (cordialType == CordialType.Auto || k.Key.Id == (uint)cordialType)
                     && k.Value.Quantity > 0
                     && k.Value.CanUse(ExProfileBehavior.Me)
                     && CordialDataMap[k.Key].Gp <= gpMissing)
@@ -108,7 +108,7 @@ namespace ExBuddy.Inventory.StockManagers
             return this.cordialStock
                 .Where(k =>
                     cordialType != CordialType.None
-                    && (cordialType == CordialType.Auto || k.Key.Id == (uint) cordialType)
+                    && (cordialType == CordialType.Auto || k.Key.Id == (uint)cordialType)
                     && k.Value.Quantity > 0
                     && k.Value.CanUse(ExProfileBehavior.Me))
                 .OrderByDescending(k => CordialDataMap[k.Key].Gp)

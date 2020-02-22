@@ -2,15 +2,15 @@
 
 namespace ExBuddy.OrderBotTags.Behaviors
 {
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
     using Buddy.Coroutines;
     using Clio.XmlEngine;
     using ff14bot;
     using ff14bot.Managers;
     using ff14bot.RemoteWindows;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     [XmlElement("EtxUseAuraItem")]
     public class EtxUseAuraItem : ExProfileBehavior

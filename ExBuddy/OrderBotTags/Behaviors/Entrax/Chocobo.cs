@@ -2,6 +2,12 @@
 
 namespace ExBuddy.OrderBotTags.Behaviors
 {
+    using Buddy.Coroutines;
+    using Clio.XmlEngine;
+    using ff14bot.Managers;
+    using ff14bot.NeoProfiles;
+    using ff14bot.RemoteAgents;
+    using ff14bot.RemoteWindows;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -9,12 +15,6 @@ namespace ExBuddy.OrderBotTags.Behaviors
     using System.Text.RegularExpressions;
     using System.Threading;
     using System.Threading.Tasks;
-    using Buddy.Coroutines;
-    using Clio.XmlEngine;
-    using ff14bot.Managers;
-    using ff14bot.NeoProfiles;
-    using ff14bot.RemoteAgents;
-    using ff14bot.RemoteWindows;
 
     [XmlElement("EtxChocobot")]
     public class EtxChocobot : ExProfileBehavior
@@ -58,7 +58,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
                             }
                         await Coroutine.Wait(5000, () => SelectString.IsOpen);
                         if (!SelectString.IsOpen) continue;
-                        SelectString.ClickSlot((uint) SelectString.LineCount - 3);
+                        SelectString.ClickSlot((uint)SelectString.LineCount - 3);
                         await Coroutine.Wait(5000, () => SelectYesno.IsOpen);
                         Log("Cleaning Stable n°{0}", i);
                         SelectYesno.ClickYes();
@@ -322,7 +322,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
                 {
                     Log("Failed to open Chocobo list");
                 }
-                SelectString.ClickSlot((uint) SelectString.LineCount - 1);
+                SelectString.ClickSlot((uint)SelectString.LineCount - 1);
                 await Coroutine.Wait(5000, () => !SelectString.IsOpen);
             }
             else
@@ -353,7 +353,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
                     else
                     {
                         Log("Failed to acces to my chocobo");
-                        SelectString.ClickSlot((uint) SelectString.LineCount - 1);
+                        SelectString.ClickSlot((uint)SelectString.LineCount - 1);
                         await Coroutine.Wait(5000, () => !SelectString.IsOpen);
                     }
                 }

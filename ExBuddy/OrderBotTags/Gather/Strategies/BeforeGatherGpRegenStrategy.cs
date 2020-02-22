@@ -1,8 +1,5 @@
 ﻿namespace ExBuddy.OrderBotTags.Gather.Strategies
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Behaviors;
     using Buddy.Coroutines;
     using Enumerations;
@@ -13,6 +10,9 @@
     using Inventory;
     using Inventory.StockManagers;
     using Logging;
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     internal class BeforeGatherGpRegenStrategy : IGpRegenStrategy
     {

@@ -8,9 +8,9 @@
     using ff14bot.AClasses;
     using ff14bot.Behavior;
     using ff14bot.Managers;
+    using ff14bot.RemoteWindows;
     using System;
     using System.Threading.Tasks;
-    using ff14bot.RemoteWindows;
 
     public abstract class Window<TWindow>
         where TWindow : Window<TWindow>, new()

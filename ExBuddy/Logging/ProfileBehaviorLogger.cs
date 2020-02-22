@@ -1,7 +1,7 @@
 ﻿namespace ExBuddy.Logging
 {
-    using System;
     using ff14bot.NeoProfiles;
+    using System;
 
     internal class ProfileBehaviorLogger : IStatusLogger
     {

@@ -1,7 +1,5 @@
 ﻿namespace ExBuddy.OrderBotTags.Gather.Strategies
 {
-    using System;
-    using System.Threading.Tasks;
     using Behaviors;
     using Enumerations;
     using ff14bot.Objects;
@@ -9,6 +7,8 @@
     using Inventory;
     using Inventory.StockManagers;
     using Logging;
+    using System;
+    using System.Threading.Tasks;
 
     internal class AfterGatherGpRegenStrategy : IGpRegenStrategy
     {

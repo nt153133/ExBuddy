@@ -13,7 +13,9 @@ namespace ExBuddy.OrderBotTags.Fish
 	using ff14bot.Behavior;
 	using ff14bot.Enums;
 	using ff14bot.Managers;
+	using ff14bot.Navigation;
 	using ff14bot.Objects;
+	using ff14bot.Pathing;
 	using ff14bot.RemoteWindows;
 	using ff14bot.Settings;
 	using System;
@@ -24,8 +26,6 @@ namespace ExBuddy.OrderBotTags.Fish
 	using System.Text.RegularExpressions;
 	using System.Threading.Tasks;
 	using System.Windows.Media;
-	using ff14bot.Navigation;
-	using ff14bot.Pathing;
 	using TreeSharp;
 	using Action = TreeSharp.Action;
 
@@ -41,7 +41,7 @@ namespace ExBuddy.OrderBotTags.Fish
 
 		protected override Color Info => Colors.Gold;
 
-	    public static bool IsFishing()
+		public static bool IsFishing()
 		{
 			return isFishing;
 		}
@@ -65,7 +65,7 @@ namespace ExBuddy.OrderBotTags.Fish
 					InitFishSpotComposite,
 					new ExCoroutineAction(ctx => HandleCollectable(), this),
 					ReleaseComposite,
-                    IdenticalCastComposite,
+					IdenticalCastComposite,
 					MoochComposite,
 					FishCountLimitComposite,
 					InventoryFullComposite,
@@ -108,7 +108,7 @@ namespace ExBuddy.OrderBotTags.Fish
 			isFishIdentified = false;
 			fishlimit = GetFishLimit();
 			checkRelease = false;
-            checkIdenticalCast = false;
+			checkIdenticalCast = false;
 
 			// Temp fix, only set it to true if it was initially true. Need to find out why this value is false here when it shouldn't be.
 			if (initialMountSetting)
@@ -508,7 +508,7 @@ namespace ExBuddy.OrderBotTags.Fish
 #if RB_CN
             @"[\u4e00-\u9fa5A-Za-z0-9·]+成功钓上了|[\u4e00-\u9fa5]+|\ue03c",
 #else
-            @"You land(?: a| an)? (.+) measuring (\d{1,4}\.\d) ilms!",
+			@"You land(?: a| an)? (.+) measuring (\d{1,4}\.\d) ilms!",
 #endif
 			RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
@@ -524,11 +524,11 @@ namespace ExBuddy.OrderBotTags.Fish
 
 		private BotEvent cleanup;
 
-        private bool checkRelease;
+		private bool checkRelease;
 
-        private bool checkIdenticalCast;
+		private bool checkIdenticalCast;
 
-        private bool isSitting;
+		private bool isSitting;
 
 		private bool isFishIdentified;
 
@@ -648,13 +648,13 @@ namespace ExBuddy.OrderBotTags.Fish
 		[XmlAttribute("FishEyes")]
 		public bool FishEyes { get; set; }
 
-        [XmlAttribute("Snagging")]
-        public bool Snagging { get; set; }
+		[XmlAttribute("Snagging")]
+		public bool Snagging { get; set; }
 
-        [XmlAttribute("IdenticalCast")]
-        public bool IdenticalCast { get; set; }
+		[XmlAttribute("IdenticalCast")]
+		public bool IdenticalCast { get; set; }
 
-        [XmlElement("PatienceTugs")]
+		[XmlElement("PatienceTugs")]
 		public List<PatienceTug> PatienceTugs { get; set; }
 
 		#endregion Public Properties
@@ -875,65 +875,65 @@ namespace ExBuddy.OrderBotTags.Fish
 			}
 		}
 
-        protected Composite IdenticalCastComposite
-        {
-            get
-            {
-                return
-                    new Decorator(
-                        ret =>
-                            IdenticalCast && checkIdenticalCast && FishingManager.State == FishingState.PoleReady && CanDoAbility(Ability.IdenticalCast)
-                            && (Keepers.Count != 0 || KeepNone),
-                        new Sequence(
-                            new Wait(
-                                2,
-                                ret => isFishIdentified,
-                                new Action(
-                                    r =>
-                                    {
-                                        // If its a keeper AND (we aren't mooching OR we can't mooch) AND Keeper is enabled, then use Identical Cast
-                                        if (Keepers.Any(FishResult.IsKeeper) && (MoochLevel == 0 || !CanDoAbility(Ability.Mooch)) && EnableKeeper)
-                                        {
-                                            DoAbility(Ability.IdenticalCast);
-                                            Logger.Info(Localization.Localization.ExFish_IdenticalCast, FishResult.Name);
-                                        }
+		protected Composite IdenticalCastComposite
+		{
+			get
+			{
+				return
+					new Decorator(
+						ret =>
+							IdenticalCast && checkIdenticalCast && FishingManager.State == FishingState.PoleReady && CanDoAbility(Ability.IdenticalCast)
+							&& (Keepers.Count != 0 || KeepNone),
+						new Sequence(
+							new Wait(
+								2,
+								ret => isFishIdentified,
+								new Action(
+									r =>
+									{
+										// If its a keeper AND (we aren't mooching OR we can't mooch) AND Keeper is enabled, then use Identical Cast
+										if (Keepers.Any(FishResult.IsKeeper) && (MoochLevel == 0 || !CanDoAbility(Ability.Mooch)) && EnableKeeper)
+										{
+											DoAbility(Ability.IdenticalCast);
+											Logger.Info(Localization.Localization.ExFish_IdenticalCast, FishResult.Name);
+										}
 
-                                        checkIdenticalCast = false;
-                                    })),
-                            new Wait(2, ret => !CanDoAbility(Ability.Release), new ActionAlwaysSucceed())));
-            }
-        }
+										checkIdenticalCast = false;
+									})),
+							new Wait(2, ret => !CanDoAbility(Ability.Release), new ActionAlwaysSucceed())));
+			}
+		}
 
-        protected Composite ReleaseComposite
-        {
-            get
-            {
-                return
-                    new Decorator(
-                        ret =>
-                            checkRelease && FishingManager.State == FishingState.PoleReady && CanDoAbility(Ability.Release)
-                            && (Keepers.Count != 0 || KeepNone),
-                        new Sequence(
-                            new Wait(
-                                2,
-                                ret => isFishIdentified,
-                                new Action(
-                                    r =>
-                                    {
-                                        // If its not a keeper AND (we aren't mooching OR we can't mooch) AND Keeper is enabled, then release
-                                        if (!Keepers.Any(FishResult.IsKeeper) && (MoochLevel == 0 || !CanDoAbility(Ability.Mooch)) && EnableKeeper)
-                                        {
-                                            DoAbility(Ability.Release);
-                                            Logger.Info(Localization.Localization.ExFish_Release, FishResult.Name);
-                                        }
+		protected Composite ReleaseComposite
+		{
+			get
+			{
+				return
+					new Decorator(
+						ret =>
+							checkRelease && FishingManager.State == FishingState.PoleReady && CanDoAbility(Ability.Release)
+							&& (Keepers.Count != 0 || KeepNone),
+						new Sequence(
+							new Wait(
+								2,
+								ret => isFishIdentified,
+								new Action(
+									r =>
+									{
+										// If its not a keeper AND (we aren't mooching OR we can't mooch) AND Keeper is enabled, then release
+										if (!Keepers.Any(FishResult.IsKeeper) && (MoochLevel == 0 || !CanDoAbility(Ability.Mooch)) && EnableKeeper)
+										{
+											DoAbility(Ability.Release);
+											Logger.Info(Localization.Localization.ExFish_Release, FishResult.Name);
+										}
 
-                                        checkRelease = false;
-                                    })),
-                            new Wait(2, ret => !CanDoAbility(Ability.Release), new ActionAlwaysSucceed())));
-            }
-        }
+										checkRelease = false;
+									})),
+							new Wait(2, ret => !CanDoAbility(Ability.Release), new ActionAlwaysSucceed())));
+			}
+		}
 
-        protected Composite CastComposite
+		protected Composite CastComposite
 		{
 			get
 			{
@@ -999,8 +999,8 @@ namespace ExBuddy.OrderBotTags.Fish
 							r =>
 							{
 								CharacterSettings.Instance.UseMount = false;
-                                DoAbility(Ability.Sneak);
-                            }),
+								DoAbility(Ability.Sneak);
+							}),
 						new Sleep(2, 3)));
 			}
 		}
@@ -1048,21 +1048,21 @@ namespace ExBuddy.OrderBotTags.Fish
 		{
 			get
 			{
-			    return new Decorator(
-			        ret => Vector3.Distance(ExProfileBehavior.Me.Location, FishSpots.CurrentOrDefault.Location) > 1,
-			        new Sequence(
-			            new Action(r =>
-			                {
-			                    if (!MovementManager.IsFlying && !MovementManager.IsDiving)
-			                    {
-                                    Navigator.MoveTo(new MoveToParameters(FishSpots.CurrentOrDefault.Location));
-			                    }
-			                    else
-			                    {
-			                        Flightor.MoveTo(new FlyToParameters(FishSpots.CurrentOrDefault.Location));
-			                    }
-			                })));
-            }
+				return new Decorator(
+					ret => Vector3.Distance(ExProfileBehavior.Me.Location, FishSpots.CurrentOrDefault.Location) > 1,
+					new Sequence(
+						new Action(r =>
+							{
+								if (!MovementManager.IsFlying && !MovementManager.IsDiving)
+								{
+									Navigator.MoveTo(new MoveToParameters(FishSpots.CurrentOrDefault.Location));
+								}
+								else
+								{
+									Flightor.MoveTo(new FlyToParameters(FishSpots.CurrentOrDefault.Location));
+								}
+							})));
+			}
 		}
 
 		protected Composite IsDoneAction
@@ -1128,7 +1128,7 @@ namespace ExBuddy.OrderBotTags.Fish
 		{
 			isFishIdentified = false;
 			checkRelease = true;
-            checkIdenticalCast = true;
+			checkIdenticalCast = true;
 			FishingManager.Cast();
 			ResetMooch();
 		}
@@ -1200,17 +1200,17 @@ namespace ExBuddy.OrderBotTags.Fish
                 if (match[2].ToString() == "\uE03C")
                     fishResult.IsHighQuality = true;
 #else
-            var match = FishRegex.Match(message);
+			var match = FishRegex.Match(message);
 
 			if (match.Success)
 			{
 				fishResult.Name = match.Groups[1].Value;
-			    float.TryParse(match.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture.NumberFormat, out var size);
-			    if (fishResult.Name[fishResult.Name.Length - 2] == ' ')
-			        fishResult.IsHighQuality = true;
+				float.TryParse(match.Groups[2].Value, NumberStyles.Number, CultureInfo.InvariantCulture.NumberFormat, out var size);
+				if (fishResult.Name[fishResult.Name.Length - 2] == ' ')
+					fishResult.IsHighQuality = true;
 #endif
-                fishResult.Size = size;
-            }
+				fishResult.Size = size;
+			}
 			FishResult = fishResult;
 			isFishIdentified = true;
 		}

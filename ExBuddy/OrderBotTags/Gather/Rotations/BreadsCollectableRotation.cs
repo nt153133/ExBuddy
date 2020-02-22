@@ -5,8 +5,8 @@
     using ExBuddy.Logging;
     using ExBuddy.OrderBotTags.Gather;
     using ff14bot;
-    using System.Threading.Tasks;
     using Helpers;
+    using System.Threading.Tasks;
 
     // Ideally we'd want to start with at least 400 gp if a 'worst-case' finisher happens, but eh.
     [GatheringRotation("BreadsCollectScrip", 35, 800, 700, 650, 600, 500, 450, 400, 300, 250, 200, 0)]

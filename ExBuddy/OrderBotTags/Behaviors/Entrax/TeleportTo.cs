@@ -2,13 +2,13 @@
 
 namespace ExBuddy.OrderBotTags.Behaviors
 {
-    using System.Threading.Tasks;
     using Buddy.Coroutines;
     using Clio.XmlEngine;
     using ff14bot;
     using ff14bot.Behavior;
     using ff14bot.Managers;
     using ff14bot.Navigation;
+    using System.Threading.Tasks;
 
     [XmlElement("EtxTeleportTo")]
     public class EtxTeleportTo : ExProfileBehavior

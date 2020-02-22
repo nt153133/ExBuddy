@@ -15,7 +15,7 @@
         {
             unchecked
             {
-                return ((int) Id * 397) ^ Hq.GetHashCode();
+                return ((int)Id * 397) ^ Hq.GetHashCode();
             }
         }
 
@@ -29,7 +29,7 @@
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((InventoryItemKey) obj);
+            return Equals((InventoryItemKey)obj);
         }
     }
 }

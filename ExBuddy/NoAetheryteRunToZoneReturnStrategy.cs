@@ -2,40 +2,40 @@
 
 namespace ExBuddy
 {
-	using Clio.Utilities;
-	using ExBuddy.Interfaces;
-	using System.Threading.Tasks;
+    using Clio.Utilities;
+    using ExBuddy.Interfaces;
+    using System.Threading.Tasks;
 
-	public class NoAetheryteRunToZoneReturnStrategy : IReturnStrategy
-	{
-		public Vector3 ZoneLocation { get; set; }
+    public class NoAetheryteRunToZoneReturnStrategy : IReturnStrategy
+    {
+        public Vector3 ZoneLocation { get; set; }
 
-		#region IAetheryteId Members
+        #region IAetheryteId Members
 
-		public uint AetheryteId { get; set; }
+        public uint AetheryteId { get; set; }
 
-		#endregion IAetheryteId Members
+        #endregion IAetheryteId Members
 
-		#region IZoneId Members
+        #region IZoneId Members
 
-		public ushort ZoneId { get; set; }
+        public ushort ZoneId { get; set; }
 
-		#endregion IZoneId Members
+        #endregion IZoneId Members
 
-		#region IReturnStrategy Members
+        #region IReturnStrategy Members
 
-		public Vector3 InitialLocation { get; set; }
+        public Vector3 InitialLocation { get; set; }
 
-		public async Task<bool> ReturnToLocation()
-		{
-			return true;
-		}
+        public async Task<bool> ReturnToLocation()
+        {
+            return true;
+        }
 
-		public async Task<bool> ReturnToZone()
-		{
-			return true;
-		}
+        public async Task<bool> ReturnToZone()
+        {
+            return true;
+        }
 
-		#endregion IReturnStrategy Members
-	}
+        #endregion IReturnStrategy Members
+    }
 }

@@ -1,13 +1,13 @@
 ﻿namespace ExBuddy.Enumerations
 {
-	public enum MoveToType
-	{
-		StopWithinRange,
+    public enum MoveToType
+    {
+        StopWithinRange,
 
-	    RandomPointWithin,
+        RandomPointWithin,
 
-	    OnGround,
+        OnGround,
 
         Auto
-	}
+    }
 }

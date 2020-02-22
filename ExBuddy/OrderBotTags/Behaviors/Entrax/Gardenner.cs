@@ -2,8 +2,6 @@
 
 namespace ExBuddy.OrderBotTags.Behaviors
 {
-    using System.Linq;
-    using System.Threading.Tasks;
     using Buddy.Coroutines;
     using Clio.XmlEngine;
     using ff14bot;
@@ -11,6 +9,8 @@ namespace ExBuddy.OrderBotTags.Behaviors
     using ff14bot.Helpers;
     using ff14bot.Managers;
     using ff14bot.RemoteWindows;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     [XmlElement("EtxGardenner")]
     public class EtxGardenner : ExProfileBehavior

@@ -1,9 +1,9 @@
 ﻿namespace ExBuddy.Windows
 {
-    using System.Threading.Tasks;
     using Enumerations;
     using ff14bot.Managers;
     using Helpers;
+    using System.Threading.Tasks;
 
     public sealed class HarpoonTip : Window<HarpoonTip>
     {
@@ -39,6 +39,6 @@
             return result > SendActionResult.InjectionError;
         }
 
-        public SendActionResult SetGig(int gigId) { return Control.TrySendAction(1, 3, (uint) gigId); }
+        public SendActionResult SetGig(int gigId) { return Control.TrySendAction(1, 3, (uint)gigId); }
     }
 }

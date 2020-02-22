@@ -1,9 +1,9 @@
 ﻿namespace ExBuddy.OrderBotTags.Gather.Strategies
 {
-    using System.Threading.Tasks;
     using Enumerations;
     using ff14bot.Objects;
     using Interfaces;
+    using System.Threading.Tasks;
 
     internal interface IGpRegenStrategy
     {

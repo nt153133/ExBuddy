@@ -1,7 +1,7 @@
 ﻿namespace ExBuddy.OrderBotTags.Gather
 {
-    using System;
     using Interfaces;
+    using System;
 
     public class SpearResult
     {

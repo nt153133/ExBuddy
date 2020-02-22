@@ -4,14 +4,13 @@
 	using Clio.XmlEngine;
 	using ExBuddy.Helpers;
 	using ff14bot;
+	using ff14bot.Managers;
 	using ff14bot.Navigation;
 	using System.Collections.Generic;
 	using System.Linq;
 	using System.Threading.Tasks;
-	using ff14bot.Behavior;
-	using ff14bot.Managers;
 
-    [XmlElement("RandomApproachGatherSpot")]
+	[XmlElement("RandomApproachGatherSpot")]
 	public class RandomApproachGatherSpot : GatherSpot
 	{
 		private HotSpot approachLocation;
@@ -38,13 +37,13 @@
 				result &= await approachLocation.MoveToOnGround();
 			}
 
-            if (UnstealthAfter && Core.Player.HasAura((int)AbilityAura.Sneak))
-            {
-                result &= await tag.CastAura(Ability.Sneak);
-            }
+			if (UnstealthAfter && Core.Player.HasAura((int)AbilityAura.Sneak))
+			{
+				result &= await tag.CastAura(Ability.Sneak);
+			}
 
-            //change the approach location for the next time we go to this node.
-            approachLocation = HotSpots.Shuffle().First();
+			//change the approach location for the next time we go to this node.
+			approachLocation = HotSpots.Shuffle().First();
 
 			return result;
 		}
@@ -63,31 +62,31 @@
 
 			var result = await approachLocation.MoveTo(dismountAtDestination: Stealth);
 
-		    if (!result) return false;
+			if (!result) return false;
 
-		    var landed = MovementManager.IsDiving || await NewNewLandingTask();
-		    if (landed && Core.Player.IsMounted && !MovementManager.IsDiving)
-                ActionManager.Dismount();
+			var landed = MovementManager.IsDiving || await NewNewLandingTask();
+			if (landed && Core.Player.IsMounted && !MovementManager.IsDiving)
+				ActionManager.Dismount();
 
-            Navigator.Stop();
-            await Coroutine.Yield();
+			Navigator.Stop();
+			await Coroutine.Yield();
 
-		    if (Stealth)
-		    {
-                await tag.CastAura(Ability.Sneak, AbilityAura.Sneak);
-            }
+			if (Stealth)
+			{
+				await tag.CastAura(Ability.Sneak, AbilityAura.Sneak);
+			}
 
-            result = await NodeLocation.MoveToOnGroundNoMount(tag.Distance, tag.Node.EnglishName, tag.MovementStopCallback);
+			result = await NodeLocation.MoveToOnGroundNoMount(tag.Distance, tag.Node.EnglishName, tag.MovementStopCallback);
 
-            return result;
-        }
+			return result;
+		}
 
-        private async Task<bool> NewNewLandingTask()
-        {
-            if (!MovementManager.IsFlying) { return true; }
+		private async Task<bool> NewNewLandingTask()
+		{
+			if (!MovementManager.IsFlying) { return true; }
 
-            while (MovementManager.IsFlying) { ActionManager.Dismount(); await Coroutine.Sleep(500); }
-            return true;
-        }
-    }
+			while (MovementManager.IsFlying) { ActionManager.Dismount(); await Coroutine.Sleep(500); }
+			return true;
+		}
+	}
 }

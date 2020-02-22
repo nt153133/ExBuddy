@@ -17,7 +17,7 @@
 
 		public override async Task<bool> ExecuteRotation(ExGatherTag tag)
 		{
-            return await base.ExecuteRotation(tag);
+			return await base.ExecuteRotation(tag);
 		}
 
 		public override async Task<bool> Gather(ExGatherTag tag)

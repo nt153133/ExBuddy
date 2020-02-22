@@ -1,5 +1,3 @@
-using ExBuddy.Logging;
-
 namespace ExBuddy.OrderBotTags.Gather.Rotations
 {
     using Buddy.Coroutines;
@@ -9,8 +7,8 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
     using ExBuddy.Interfaces;
     using ff14bot;
     using ff14bot.Managers;
-    using System.Threading.Tasks;
     using System;
+    using System.Threading.Tasks;
 
     //Name, RequiredTime, RequiredGpBreakpoints
     [GatheringRotation("BreadsYield", 25, 830, 820, 780, 730, 680, 630, 580, 530, 480, 430, 380, 330, 0)]

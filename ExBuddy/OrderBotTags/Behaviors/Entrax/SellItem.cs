@@ -2,11 +2,6 @@
 
 namespace ExBuddy.OrderBotTags.Behaviors
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Threading.Tasks;
     using Buddy.Coroutines;
     using Clio.Utilities;
     using Clio.XmlEngine;
@@ -18,6 +13,11 @@ namespace ExBuddy.OrderBotTags.Behaviors
     using ff14bot.Pathing;
     using ff14bot.RemoteWindows;
     using ff14bot.Settings;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     [XmlElement("EtxSellItem")]
     public class EtxSellItem : ExProfileBehavior
