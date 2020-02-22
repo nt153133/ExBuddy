@@ -36,13 +36,6 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 		{
 			var unknownItems = GatheringManager.GatheringWindowItems.Where(i => i.IsUnknownChance() && i.Amount > 0).ToArray();
 
-			if (tag.Node.IsUnspoiled() && Core.Player.CurrentGP >= 550 && unknownItems.Length > 1)
-			{
-#if RB_CN
-			await tag.Cast(Ability.Toil);
-#endif
-            }
-
             return await base.Prepare(tag);
 		}
 	}

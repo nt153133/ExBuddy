@@ -98,17 +98,11 @@
 				result &= await StealthLocation.MoveToNoMount(UseMesh, tag.Radius, "Stealth Location", tag.MovementStopCallback);
 			}
 
-#if RB_CN
-			if (UnstealthAfter && Core.Player.HasAura((int)AbilityAura.Stealth))
-			{
-				result &= tag.DoAbility(Ability.Stealth); // TODO: move into abilities map?
-            }
-#else
             if (UnstealthAfter && Core.Player.HasAura((int)AbilityAura.Sneak))
             {
                 result &= tag.DoAbility(Ability.Sneak); // TODO: move into abilities map?
             }
-#endif
+
 
             return result;
 		}
@@ -134,17 +128,10 @@
 			if (result)
 			{
 				await Coroutine.Yield();
-#if RB_CN
-                if (!Core.Player.HasAura((int)AbilityAura.Stealth))
-				{
-					tag.DoAbility(Ability.Stealth);
-				}
-#else
                 if (!Core.Player.HasAura((int)AbilityAura.Sneak))
                 {
                     tag.DoAbility(Ability.Sneak);
                 }
-#endif
 
                 result = await Location.MoveToNoMount(UseMesh, tag.Radius, tag.Name, tag.MovementStopCallback);
 			}

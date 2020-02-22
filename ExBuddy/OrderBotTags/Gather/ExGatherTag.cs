@@ -235,12 +235,7 @@
         {
             await CommonTasks.HandleLoading();
 
-            return HandleDeath() || HandleCondition() || await CastTruth()
-#if !RB_CN
-                || await CastSneak()
-#endif
-                || HandleReset() || await MoveToHotSpot()
-                   || await FindNode() || await ResetOrDone();
+            return HandleDeath() || HandleCondition() || await CastTruth() || await CastSneak() || HandleReset() || await MoveToHotSpot() || await FindNode() || await ResetOrDone();
         }
 
         protected override void OnDone()
@@ -583,7 +578,6 @@
                         ExProfileBehavior.Me.CurrentJob == ClassJobType.Miner ? AbilityAura.TruthOfMountains : AbilityAura.TruthOfForests);
         }
 
-#if !RB_CN
         private async Task<bool> CastSneak()
         {
             if (ExProfileBehavior.Me.CurrentJob != ClassJobType.Miner && ExProfileBehavior.Me.CurrentJob != ClassJobType.Botanist)
@@ -598,7 +592,6 @@
 
             return await CastAura(Ability.Sneak, AbilityAura.Sneak);
         }
-#endif
 
         private async Task<bool> ChangeHotSpot()
         {

@@ -17,10 +17,6 @@
 
 		public override async Task<bool> ExecuteRotation(ExGatherTag tag)
 		{
-#if RB_CN
-			await tag.Cast(Ability.Toil);
-#endif
-
             return await base.ExecuteRotation(tag);
 		}
 

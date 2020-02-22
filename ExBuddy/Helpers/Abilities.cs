@@ -14,12 +14,7 @@
                     {
                         {Ability.IncreaseGatherChance5, 218},
                         {Ability.IncreaseGatherChance15, 220},
-#if RB_CN
-						{Ability.Stealth, 212},
-                        {Ability.Toil, 214},
-#else
                         {Ability.Sneak, 304},
-#endif
 						{Ability.IncreaseGatherChance50, 294},
                         {Ability.Preparation, 213},
                         {Ability.IncreaseGatherQuality10, 225},
@@ -58,12 +53,7 @@
                     {
                         {Ability.IncreaseGatherChance5, 235},
                         {Ability.IncreaseGatherChance15, 237},
-#if RB_CN
-                        {Ability.Stealth, 229},
-                        {Ability.Toil, 231},
-#else
                         {Ability.Sneak, 303},
-#endif
                         {Ability.IncreaseGatherChance50, 295},
                         {Ability.Preparation, 230},
                         {Ability.IncreaseGatherQuality10, 242},
@@ -105,11 +95,7 @@
                         {Ability.Hook, 296},
                         {Ability.Quit, 299},
                         {Ability.CastLight, 2135},
-#if RB_CN
-                        {Ability.Stealth, 298},
-#else
                         {Ability.Sneak, 305},
-#endif
                         {Ability.Release, 300},
                         {Ability.Mooch, 297},
                         {Ability.Snagging, 4100},
@@ -145,21 +131,11 @@
 	internal enum AbilityAura : short
 	{
 		None = -1,
-
-#if RB_CN
-		Stealth = 47,
-#else
         Sneak = 47,
-#endif
-
 		TruthOfForests = 221,
-
         TruthOfMountains = 222,
-
         DiscerningEye = 757,
-
 		CollectorsGlove = 805,
-
         TruthOfOceans = 1173
     }
 
@@ -168,133 +144,66 @@
         None,
 
         IncreaseGatherChance5, // 218, 235
-
         IncreaseGatherChance15, // 220, 235
-
-#if RB_CN
-		Stealth, // = 212, 229, 298
-
-		Toil, // = 231,214
-#else
         Sneak, // = 304, 303, 305
-#endif
-
         IncreaseGatherChance50, // 294, 295
-
         Preparation, // 213, 230
-
         IncreaseGatherQuality10, // 225, 242
-
         IncreaseElementalGatherYield, // 282, 280
-
         IncreaseGatherChanceOnce15, // 4086, 4072
-
         IncreaseGatherYieldOnce, // 40887, 8073
-
         AdditionalAttempt, // 215, 232
-
         IncreaseGatherChanceQuality100, // 216, 233
-
         IncreaseGatherYield, // 222, 239
-
         IncreaseGatherQuality30, // 226, 243
-
         IncreaseGatherYield2, // 224, 241
-
         Truth, // 221, 238, 7911
-
         CollectorsGlove, // 4088, 4074, 4101
-
         MethodicalAppraisal, // 4089, 4075
-
         DiscerningEye, // 4092, 4078
-
         InstinctualAppraisal, // 4090, 4076
-
         UtmostCaution, // 4093, 4079
-
         ImpulsiveAppraisal, // 4091, 4077
-
         Luck, // 4095, 4081
-
         SingleMind, // 4098, 4084
-
         IncreaseGatherQualityOnce10, // 4096, 4082
-
         IncreaseGatherQualityOnce20, // 4097, 4083
-
         ImpulsiveAppraisalII, // 302, 301
-
         IncreaseGatherQuality30100, // 271, 270
-
         IncreaseGatherQualityRandomOnce, // 275, 274
-
         IncreaseGatherYieldOnce2, // 273, 272
-
         Stickler, // 4594, 4593
-
         TheGivingLand, // 4590, 4589
-
         PickClean, // 4588, 4587
-
-        Mind, // 4606, 4605        
-
+        Mind, // 4606, 4605
         // Fisher
-
         Bait,
-
         Cast,
-
         Hook,
-
         Quit,
-
         CastLight,
-
         Release,
-
         Mooch,
-
         Snagging,
-
         Patience,
-
         PowerfulHookset,
-
         Chum,
-
         PrecisionHookset,
-
         FishEyes,
-
         Patience2,
-
         SharkEye,
-
         Gig,
-
         GigHead,
-
         Mooch2,
-
         VeteranTrade,
-
         CalmWaters,
-
         SharkEye2,
-
         DoubleHook,
-
         Salvage,
-
         BountifulCatch,
-
         NaturesBounty,
-
         SurfaceSlap,
-
         IdenticalGig,
-
         IdenticalCast,
     }
 }
