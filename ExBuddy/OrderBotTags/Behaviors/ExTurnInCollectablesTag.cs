@@ -353,13 +353,24 @@ namespace ExBuddy.OrderBotTags.Behaviors
                     return true;
                 }
 
-                if (purchaseItemInfo.Index == (int)ShopItem.OnHighOrchestrionRoll && Location != Locations.RhalgrsReach ||
-                    purchaseItemInfo.Index >= (int)ShopItem.MoonbeamSilk && purchaseItemInfo.Index <= (int)ShopItem.RaziqcoatHq && Location != Locations.RhalgrsReach ||
-                    purchaseItemInfo.Index >= (int)ShopItem.GardenGravel && purchaseItemInfo.Index <= (int)ShopItem.SongsofSaltandSufferingOrchestrionRoll && Location != Locations.RhalgrsReach)
+#if RB_CN
+                if (purchaseItemInfo.Index == (int)ShopItem.OnHighOrchestrionRoll && purchaseItemInfo.ShopJob == ShopJob.Crafter && purchaseItemInfo.ShopType == ShopType.Yellow50 && Location != Locations.RhalgrsReach ||
+                    purchaseItemInfo.Index >= (int)ShopItem.MoonbeamSilk && purchaseItemInfo.Index <= (int)ShopItem.RaziqcoatHq && purchaseItemInfo.ShopJob == ShopJob.Crafter && purchaseItemInfo.ShopType == ShopType.Yellow58 && Location != Locations.RhalgrsReach ||
+                    purchaseItemInfo.Index >= (int)ShopItem.GardenGravel && purchaseItemInfo.Index <= (int)ShopItem.SongsofSaltandSufferingOrchestrionRoll && purchaseItemInfo.ShopJob == ShopJob.Gatherer && purchaseItemInfo.ShopType == ShopType.Yellow50 && Location != Locations.RhalgrsReach)
                 {
                     Logger.Warn(Localization.Localization.ExTurnInCollectable_FailedPurchaseGorRhalgrsReach, purchaseItemData.EnglishName);
                     continue;
                 }
+#else
+                if (purchaseItemInfo.Index == (int)ShopItem.OnHighOrchestrionRoll && purchaseItemInfo.ShopJob == ShopJob.Crafter && purchaseItemInfo.ShopType == ShopType.Yellow50 && Location != Locations.RhalgrsReach ||
+                    purchaseItemInfo.Index >= (int)ShopItem.MoonbeamSilk && purchaseItemInfo.Index <= (int)ShopItem.RaziqcoatHq && purchaseItemInfo.ShopJob == ShopJob.Crafter && purchaseItemInfo.ShopType == ShopType.Yellow50 && Location != Locations.RhalgrsReach ||
+                    purchaseItemInfo.Index >= (int)ShopItem.GardenGravel && purchaseItemInfo.Index <= (int)ShopItem.SongsofSaltandSufferingOrchestrionRoll && purchaseItemInfo.ShopJob == ShopJob.Gatherer && purchaseItemInfo.ShopType == ShopType.Yellow50 && Location != Locations.RhalgrsReach ||
+                    purchaseItemInfo.Index >= (int)ShopItem.SmallAnglersCanvas && purchaseItemInfo.Index <= (int)ShopItem.ExtraAnglersCanvas && purchaseItemInfo.ShopJob == ShopJob.Gatherer && purchaseItemInfo.ShopType == ShopType.Yellow70 && Location < Locations.RhalgrsReach)
+                {
+                    Logger.Warn(Localization.Localization.ExTurnInCollectable_FailedPurchaseGorRhalgrsReach, purchaseItemData.EnglishName);
+                    continue;
+                }
+#endif
 
                 ticks = 0;
                 while (SelectIconString.IsOpen && ticks++ < 5 && Behaviors.ShouldContinue)
