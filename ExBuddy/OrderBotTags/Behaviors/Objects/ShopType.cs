@@ -4,7 +4,9 @@
     {
         Yellow50,
 
+#if RB_CN
         Yellow58,
+#endif
 
         Yellow61,
 
@@ -19,6 +21,10 @@
         Yellow70,
 
         WhiteGear,
+
+#if !RB_CN
+        WhiteGearII,
+#endif
 
         White80,
     }

@@ -54,7 +54,9 @@
                             {
                                 case ShopType.Yellow50:
                                     return Scrips.YellowCrafter;
+#if RB_CN
                                 case ShopType.Yellow58:
+#endif
                                     return Scrips.YellowCrafter;
                                 case ShopType.Yellow61:
                                     return Scrips.YellowCrafter;
@@ -71,8 +73,10 @@
                             {
                                 case ShopType.Yellow50:
                                     return Scrips.YellowGatherer;
+#if RB_CN
                                 case ShopType.Yellow58:
                                     return Scrips.YellowGatherer;
+#endif
                                 case ShopType.Yellow61:
                                     return Scrips.YellowGatherer;
                                 case ShopType.Yellow70:

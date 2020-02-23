@@ -355,8 +355,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
 
                 if (purchaseItemInfo.Index == (int)ShopItem.OnHighOrchestrionRoll && Location != Locations.RhalgrsReach ||
                     purchaseItemInfo.Index >= (int)ShopItem.MoonbeamSilk && purchaseItemInfo.Index <= (int)ShopItem.RaziqcoatHq && Location != Locations.RhalgrsReach ||
-                    purchaseItemInfo.Index == (int)ShopItem.GardenGravel && Location != Locations.RhalgrsReach ||
-                    purchaseItemInfo.Index == (int)ShopItem.SongsofSaltandSufferingOrchestrionRoll && Location != Locations.RhalgrsReach)
+                    purchaseItemInfo.Index >= (int)ShopItem.GardenGravel && purchaseItemInfo.Index <= (int)ShopItem.SongsofSaltandSufferingOrchestrionRoll && Location != Locations.RhalgrsReach)
                 {
                     Logger.Warn(Localization.Localization.ExTurnInCollectable_FailedPurchaseGorRhalgrsReach, purchaseItemData.EnglishName);
                     continue;
@@ -395,10 +394,26 @@ namespace ExBuddy.OrderBotTags.Behaviors
                     var qtyBuyable = scripsLeft / purchaseItemInfo.Cost;
                     var qtyToBuy = Math.Min(99, Math.Min(qtyLeftToBuy, qtyBuyable));
 
+#if RB_CN
                     var indexPurchaseItem = (Location != Locations.Idyllshire && Location != Locations.RhalgrsReach && purchaseItemInfo.ShopJob == ShopJob.Crafter && purchaseItemInfo.ShopType == ShopType.Yellow58 &&
                          purchaseItemInfo.Index >= (int)ShopItem.MoonbeamSilk - 200)
                             ? purchaseItemInfo.Index - 12
                             : purchaseItemInfo.Index;
+#else
+                    var indexPurchaseItem = (Location != Locations.Idyllshire && Location != Locations.RhalgrsReach && purchaseItemInfo.ShopJob == ShopJob.Crafter && purchaseItemInfo.ShopType == ShopType.Yellow50 &&
+                         purchaseItemInfo.Index >= (int)ShopItem.MoonbeamSilk)
+                            ? purchaseItemInfo.Index - 13
+                            : (Location != Locations.RhalgrsReach && purchaseItemInfo.ShopJob == ShopJob.Crafter && purchaseItemInfo.ShopType == ShopType.Yellow50 &&
+                         purchaseItemInfo.Index >= (int)ShopItem.OnHighOrchestrionRoll && purchaseItemInfo.Index <= (int)ShopItem.CarbonFiberHq)
+                         ? purchaseItemInfo.Index - 1
+                         : (Location != Locations.RhalgrsReach && purchaseItemInfo.ShopJob == ShopJob.Gatherer && purchaseItemInfo.ShopType == ShopType.Yellow50 &&
+                         purchaseItemInfo.Index >= (int)ShopItem.GardenGravel - 100)
+                         ? purchaseItemInfo.Index - 2
+                         : (Location > Locations.RhalgrsReach && purchaseItemInfo.ShopJob == ShopJob.Gatherer && purchaseItemInfo.ShopType == ShopType.Yellow70 &&
+                         purchaseItemInfo.Index >= (int)ShopItem.SmallAnglersCanvas - 500)
+                         ? purchaseItemInfo.Index - 4
+                         : purchaseItemInfo.Index;
+#endif
 
                     if (!await shopExchangeCurrency.PurchaseItem(indexPurchaseItem, (uint)qtyToBuy, 20))
                     {
@@ -765,6 +780,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
 
                                 break;
 
+#if RB_CN
                             case ShopType.Yellow58:
                                 if (Memory.Scrips.YellowCrafter < info.Cost)
                                 {
@@ -772,6 +788,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
                                 }
 
                                 break;
+#endif
 
                             case ShopType.Yellow61:
                                 if (Memory.Scrips.YellowCrafter < info.Cost)
@@ -812,6 +829,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
 
                                 break;
 
+#if RB_CN
                             case ShopType.Yellow58:
                                 if (Memory.Scrips.YellowGatherer < info.Cost)
                                 {
@@ -819,6 +837,7 @@ namespace ExBuddy.OrderBotTags.Behaviors
                                 }
 
                                 break;
+#endif
 
                             case ShopType.Yellow61:
                                 if (Memory.Scrips.YellowGatherer < info.Cost)
