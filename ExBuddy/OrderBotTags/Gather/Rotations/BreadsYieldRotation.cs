@@ -11,7 +11,7 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
     using System.Threading.Tasks;
 
     //Name, RequiredTime, RequiredGpBreakpoints
-    [GatheringRotation("BreadsYield", 25, 830, 820, 780, 730, 680, 630, 580, 530, 480, 430, 380, 330, 0)]
+    [GatheringRotation("BreadsYield", 25, 820, 780, 730, 680, 630, 580, 530, 480, 430, 380, 330, 0)]
     public class EndGameYieldRotation : SmartGatheringRotation, IGetOverridePriority
     {
         private readonly ushort level = Core.Player.ClassLevel;
@@ -106,13 +106,13 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
                     await Coroutine.Wait(2000, () => Core.Player.HasAura(1286));
                 }
 
-                double counsels = Math.Floor(YieldsLeft() + 0.1);
+                //double counsels = Math.Floor(YieldsLeft() + 0.1);
 
-                if (Core.Player.CurrentGP >= 10 && level >= 67 && tag.GatherItem.HqChance > 0 && tag.GatherItem.HqChance < 100 && YieldsLeft() >= counsels && !Core.Player.HasAura(1262))
-                {
-                    await tag.Cast(Ability.IncreaseGatherQualityRandomOnce);
-                    await Coroutine.Wait(2000, () => Core.Player.HasAura(1262));
-                }
+                //if (Core.Player.CurrentGP >= 10 && level >= 67 && tag.GatherItem.HqChance > 0 && tag.GatherItem.HqChance < 100 && YieldsLeft() >= counsels && !Core.Player.HasAura(1262))
+                //{
+                //    await tag.Cast(Ability.IncreaseGatherQualityRandomOnce);
+                //    await Coroutine.Wait(2000, () => Core.Player.HasAura(1262));
+                //}
 
                 if (!await tag.ResolveGatherItem()) return false;
 

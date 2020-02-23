@@ -120,14 +120,14 @@
                     await Wait();
                 }
 
-                double counsels = Math.Floor(YieldsLeft() + 0.1);
+                //double counsels = Math.Floor(YieldsLeft() + 0.1);
 
-                if (Core.Player.CurrentGP >= 10 && level >= 67 && tag.GatherItem.HqChance > 0 && tag.GatherItem.HqChance < 100 && YieldsLeft() >= counsels && !Core.Player.HasAura(1262))
-                {
-                    await tag.Cast(Ability.IncreaseGatherQualityRandomOnce);
-                    await Coroutine.Wait(2000, () => Core.Player.HasAura(1262));
-                    await Wait();
-                }
+                //if (Core.Player.CurrentGP >= 10 && level >= 67 && tag.GatherItem.HqChance > 0 && tag.GatherItem.HqChance < 100 && YieldsLeft() >= counsels && !Core.Player.HasAura(1262))
+                //{
+                //    await tag.Cast(Ability.IncreaseGatherQualityRandomOnce);
+                //    await Coroutine.Wait(2000, () => Core.Player.HasAura(1262));
+                //    await Wait();
+                //}
 
                 if (!await tag.ResolveGatherItem()) return false;
 
