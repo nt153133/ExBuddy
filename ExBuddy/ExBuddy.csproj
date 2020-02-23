@@ -31,31 +31,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Clio.Localization, Version=1.0.168.0, Culture=neutral, PublicKeyToken=48d7174f8a943034, processorArchitecture=AMD64">
+    <Reference Include="Clio.Localization, Version=1.0.328.0, Culture=neutral, PublicKeyToken=48d7174f8a943034, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\RebornBuddy\Rebornbuddy64\Clio.Localization.dll</HintPath>
-    </Reference>
-    <Reference Include="Clio.Localization, Version=1.0.329.0, Culture=neutral, PublicKeyToken=48d7174f8a943034">
-      <HintPath>..\..\Clio.Localization.dll</HintPath>
-    </Reference>
-    <Reference Include="GreyMagic, Version=1.0.41.0, Culture=neutral, PublicKeyToken=260525fa2b0e778a">
-      <HintPath>..\..\GreyMagic.dll</HintPath>
+      <HintPath>..\Assembly\Clio.Localization.dll</HintPath>
     </Reference>
     <Reference Include="GreyMagic, Version=1.0.41.0, Culture=neutral, PublicKeyToken=260525fa2b0e778a, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\RebornBuddy\Rebornbuddy64\GreyMagic.dll</HintPath>
+      <HintPath>..\Assembly\GreyMagic.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Quest Behaviors_1759427317, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\CompiledAssemblies\Quest Behaviors_1759427317.dll</HintPath>
+    <Reference Include="Quest Behaviors_2128501788">
+      <HintPath>..\Assembly\Quest Behaviors_2128501788.dll</HintPath>
     </Reference>
-    <Reference Include="RebornBuddy, Version=1.0.168.0, Culture=neutral, PublicKeyToken=48d7174f8a943034, processorArchitecture=AMD64">
+    <Reference Include="RebornBuddy, Version=1.0.328.0, Culture=neutral, PublicKeyToken=48d7174f8a943034, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\RebornBuddy\Rebornbuddy64\RebornBuddy.exe</HintPath>
-    </Reference>
-    <Reference Include="RebornBuddy, Version=1.0.329.0, Culture=neutral, PublicKeyToken=48d7174f8a943034">
-      <HintPath>..\..\RebornBuddy.exe</HintPath>
+      <HintPath>..\Assembly\RebornBuddy.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
