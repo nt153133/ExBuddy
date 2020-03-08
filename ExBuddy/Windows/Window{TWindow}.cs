@@ -81,6 +81,7 @@
                 {
                     Logger.Instance.Verbose(Localization.Localization.Window_Closed, Name);
                     await CloseSelectString();
+                    await CloseYesNo();
                     return result;
                 }
 
@@ -91,6 +92,7 @@
                 {
                     Logger.Instance.Verbose(Localization.Localization.Window_Closed, Name);
                     await CloseSelectString();
+                    await CloseYesNo();
                     return result;
                 }
 
@@ -118,6 +120,20 @@
             await Coroutine.Wait(1000, () => !SelectString.IsOpen);
 
             return !SelectString.IsOpen;
+        }
+
+        private async Task<bool> CloseYesNo()
+        {
+            await Coroutine.Wait(1000, () => SelectYesno.IsOpen);
+
+            if (SelectYesno.IsOpen)
+            {
+                SelectYesno.ClickYes();
+            }
+
+            await Coroutine.Wait(1000, () => !SelectYesno.IsOpen);
+
+            return !SelectYesno.IsOpen;
         }
 
 

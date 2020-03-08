@@ -23,12 +23,12 @@
 
         protected internal static async Task Wait()
         {
-            if (GatheringManager.ShouldPause(DataManager.SpellCache[(uint)Ability.Preparation]))
+            if (GatheringManager.ShouldPause(DataManager.SpellCache[(uint)Ability.IncreaseGatherChance5]))
             {
                 var ticks = 0;
                 while (ticks++ < 60 && Behaviors.ShouldContinue)
                 {
-                    if (!GatheringManager.ShouldPause(DataManager.SpellCache[(uint)Ability.Preparation]))
+                    if (!GatheringManager.ShouldPause(DataManager.SpellCache[(uint)Ability.IncreaseGatherChance5]))
                     {
                         break;
                     }

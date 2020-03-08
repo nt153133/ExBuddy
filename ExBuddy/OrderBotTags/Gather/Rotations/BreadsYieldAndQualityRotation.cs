@@ -20,12 +20,7 @@
 
         int IGetOverridePriority.GetOverridePriority(ExGatherTag tag)
         {
-            if (tag.CollectableItem != null)
-            {
-                return -1;
-            }
-
-            if (tag.GatherItem != null && tag.GatherItem.HqChance < 1)
+            if (tag.CollectableItem != null || tag.GatherItem != null && tag.GatherItem.HqChance < 1 || !tag.Node.IsUnspoiled())
             {
                 return -1;
             }
@@ -48,24 +43,6 @@
 
         public override async Task<bool> ExecuteRotation(ExGatherTag tag)
         {
-            if (!tag.Node.IsUnspoiled())
-            {
-                if (!(GatheringManager.SwingsRemaining > 4 && Core.Player.CurrentGP >= 300 && level >= 63) || tag.GatherItem.HqChance >= 100) return true;
-                if (tag.GatherItem.HqChance >= 90)
-                {
-                    await tag.Cast(Ability.IncreaseGatherQuality10);
-                    await Wait();
-                }
-                else
-                {
-                    await tag.Cast(Ability.IncreaseGatherQuality30100);
-                    await Wait();
-                }
-                await IncreaseChance(tag);
-                await Wait();
-                return true;
-            }
-
             if (Core.Player.CurrentGP >= 300 && level >= 63 && tag.GatherItem.HqChance < 100)
             {
                 if (tag.GatherItem.HqChance >= 90)

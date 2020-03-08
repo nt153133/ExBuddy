@@ -20,8 +20,7 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
         int IGetOverridePriority.GetOverridePriority(ExGatherTag tag)
         {
-            if (tag.CollectableItem != null) return -1;
-
+            if (tag.CollectableItem != null || !tag.Node.IsUnspoiled()) return -1;
             if (level >= 40)
             {
                 switch (tag.GatherIncrease)
@@ -40,16 +39,6 @@ namespace ExBuddy.OrderBotTags.Gather.Rotations
 
         public override async Task<bool> ExecuteRotation(ExGatherTag tag)
         {
-            if (!tag.Node.IsUnspoiled())
-            {
-                if (!(GatheringManager.SwingsRemaining > 4 && Core.Player.CurrentGP >= 250 && level >= 77)) return true;
-                await tag.Cast(Ability.PickClean);
-                await IncreaseChance(tag);
-                await Wait();
-
-                return true;
-            }
-
             double YieldsLeft()
             {
                 return Math.Min(GatheringManager.SwingsRemaining, Math.Max(0, (Core.Player.CurrentGP + GatheringManager.SwingsRemaining * 5) / 100));
