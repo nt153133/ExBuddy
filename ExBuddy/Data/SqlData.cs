@@ -25,7 +25,7 @@
 
         static SqlData()
         {
-            var path = Path.Combine(Environment.CurrentDirectory, "Plugins\\ExBuddy\\Data\\" + DbFileName);
+            var path = Path.Combine(DataLocation.SourceDirectory().FullName, DbFileName);
 
             if (File.Exists(path))
             {

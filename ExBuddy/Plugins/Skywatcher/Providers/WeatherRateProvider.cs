@@ -6,6 +6,7 @@
     using System;
     using System.IO;
     using System.Linq;
+    using Data;
 
     internal class WeatherRateProvider
     {
@@ -19,7 +20,7 @@
 
         static WeatherRateProvider()
         {
-            var path = Path.Combine(Environment.CurrentDirectory, "Plugins\\ExBuddy\\Data\\" + WeatherRateIndexFileName);
+            var path = Path.Combine(DataLocation.SourceDirectory().FullName, WeatherRateIndexFileName);
 
             if (File.Exists(path))
             {

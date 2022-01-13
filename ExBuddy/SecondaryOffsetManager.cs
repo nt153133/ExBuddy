@@ -32,88 +32,90 @@
                     .OrderBy(t => t.Name)
                     .ToArray();
 
-            Parallel.ForEach(
-                types,
-                type =>
-                {
-                    var pf = new PatternFinder(Core.Memory);
-
-                    foreach (var info in type.GetFields())
+            using (var pf = new PatternFinder(Core.Memory))
+            {
+                Parallel.ForEach(
+                    types,
+                    type =>
                     {
-                        var offset = (Offset64)Attribute.GetCustomAttributes(info, typeof(Offset64)).FirstOrDefault();
-
-                        if (offset == null)
+                        foreach (var info in type.GetFields())
                         {
-                            continue;
-                        }
+                            var offset = (Offset64) Attribute.GetCustomAttributes(info, typeof(Offset64))
+                                .FirstOrDefault();
 
-                        try
-                        {
-                            var markedDontRebase = false;
-
-                            var pattern = offset.Pattern;
-                            if (!pattern.Trim().EndsWith("DontRebase"))
+                            if (offset == null)
                             {
-                                pattern = pattern + " DontRebase";
-                            }
-
-                            var results = pf.FindMany(pattern, ref markedDontRebase);
-                            if (results == null)
-                            {
-                                //Failed to find a pattern match.
-                                logr.Write("No match for {0} some functionality may not work correctly", info.Name);
                                 continue;
                             }
 
-                            if (results.Length > 1)
+                            try
                             {
-                                lock (Core.Memory)
+                                var markedDontRebase = false;
+
+                                var pattern = offset.Pattern;
+                                if (!pattern.Trim().EndsWith("DontRebase"))
                                 {
-                                    if (offset.MultipleResults)
+                                    pattern = pattern + " DontRebase";
+                                }
+
+                                var results = pf.FindMany(pattern, ref markedDontRebase);
+                                if (results == null)
+                                {
+                                    //Failed to find a pattern match.
+                                    logr.Write("No match for {0} some functionality may not work correctly", info.Name);
+                                    continue;
+                                }
+
+                                if (results.Length > 1)
+                                {
+                                    lock (Core.Memory)
                                     {
-                                        if (results.Distinct().Count() == 1)
+                                        if (offset.MultipleResults)
                                         {
-                                            //Multiple matches were expected but there was only one result, double check that our pattern is still finding what we wanted
+                                            if (results.Distinct().Count() == 1)
+                                            {
+                                                //Multiple matches were expected but there was only one result, double check that our pattern is still finding what we wanted
+                                                logr.Write(
+                                                    "Multiple matches for {0} were expected, but only one result was found, some functionality may not work correctly",
+                                                    info.Name);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            //Multiple matches to the provided pattern were found and we were not expecting this
                                             logr.Write(
-                                                "Multiple matches for {0} were expected, but only one result was found, some functionality may not work correctly",
+                                                "Multiple matches for {0} which was not expected, some functionality may not work correctly",
                                                 info.Name);
                                         }
                                     }
-                                    else
-                                    {
-                                        //Multiple matches to the provided pattern were found and we were not expecting this
-                                        logr.Write(
-                                            "Multiple matches for {0} which was not expected, some functionality may not work correctly",
-                                            info.Name);
-                                    }
+                                }
+
+                                var addrz = (long) results[0];
+
+                                if (offset.Modifier != 0)
+                                {
+                                    addrz = (long) (addrz + offset.Modifier);
+                                }
+
+                                logr.Write("[SecondaryOffsetManager] Found 0x{0:X} for {1}", addrz, info.Name);
+
+                                if (info.FieldType == typeof(IntPtr))
+                                {
+                                    info.SetValue(null, (IntPtr) addrz);
+                                }
+                                else
+                                {
+                                    info.SetValue(null, (int) addrz);
                                 }
                             }
-
-                            var addrz = (long)results[0];
-
-                            if (offset.Modifier != 0)
+                            catch (Exception e)
                             {
-                                addrz = (long)(addrz + offset.Modifier);
-                            }
-
-                            logr.Write("[SecondaryOffsetManager] Found 0x{0:X} for {1}", addrz, info.Name);
-
-                            if (info.FieldType == typeof(IntPtr))
-                            {
-                                info.SetValue(null, (IntPtr)addrz);
-                            }
-                            else
-                            {
-                                info.SetValue(null, (int)addrz);
+                                //Something went wrong
+                                logr.WriteException(e);
                             }
                         }
-                        catch (Exception e)
-                        {
-                            //Something went wrong
-                            logr.WriteException(e);
-                        }
-                    }
-                });
+                    });
+            }
 
             SecondaryOffsetManager.Initalized = true;
         }

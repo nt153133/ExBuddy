@@ -5,6 +5,7 @@
     using System.IO;
     using System.Linq;
     using System.Xml.Linq;
+    using Data;
 
     public class MasterPieceSupplyDataProvider
     {
@@ -22,7 +23,7 @@
 
         static MasterPieceSupplyDataProvider()
         {
-            var path = Path.Combine(Environment.CurrentDirectory, "Plugins\\ExBuddy\\Data\\" + MsdFileName);
+            var path = Path.Combine(DataLocation.SourceDirectory().FullName, MsdFileName);
 
             if (File.Exists(path))
             {
@@ -31,7 +32,8 @@
             else
             {
                 DataFilePath =
-                    Directory.GetFiles(PluginManager.PluginDirectory, "*" + MsdFileName, SearchOption.AllDirectories).FirstOrDefault();
+                    Directory.GetFiles(PluginManager.PluginDirectory, "*" + MsdFileName, SearchOption.AllDirectories)
+                        .FirstOrDefault();
             }
 
             Instance = new MasterPieceSupplyDataProvider(DataFilePath);
@@ -62,7 +64,8 @@
             var result =
                 data.Root.Descendants("MS")
                     .FirstOrDefault(
-                        e => e.Elements().Any(c => string.Equals(c.Value, itemName, StringComparison.InvariantCultureIgnoreCase)));
+                        e => e.Elements().Any(c =>
+                            string.Equals(c.Value, itemName, StringComparison.InvariantCultureIgnoreCase)));
 
             if (result == null)
             {

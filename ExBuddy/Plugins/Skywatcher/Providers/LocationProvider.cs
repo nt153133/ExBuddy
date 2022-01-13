@@ -6,6 +6,7 @@
     using System;
     using System.IO;
     using System.Linq;
+    using Data;
 
     public class LocationProvider
     {
@@ -19,7 +20,7 @@
 
         static LocationProvider()
         {
-            var path = Path.Combine(Environment.CurrentDirectory, "Plugins\\ExBuddy\\Data\\" + LocationIndexFileName);
+            var path = Path.Combine(DataLocation.SourceDirectory().FullName, LocationIndexFileName);
 
             if (File.Exists(path))
             {

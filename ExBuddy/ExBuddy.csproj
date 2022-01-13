@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\OffsetAttribute.cs" />
+    <Compile Include="Data\DataLocation.cs" />
     <Compile Include="Data\MasterpieceSupplyDutyResult.cs" />
     <Compile Include="Data\RequiredItemResult.cs" />
     <Compile Include="Data\SqlData.cs" />
